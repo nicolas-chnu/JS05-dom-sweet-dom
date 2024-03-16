@@ -1,0 +1,23 @@
+@use '../abstracts' as a;
+@use '../base';
+
+button {
+  $not-pressed-color: a.$gray-dark;
+  $pressed-color: a.$gray;
+
+  padding: 20px;
+  border-radius: 17px;
+  background-color: $not-pressed-color;
+  border: none;
+  font-size: 24px;
+  font-weight: 500;
+  opacity: 1;
+
+  &:hover {
+    background-color: $pressed-color;
+  }
+  &:disabled, &[disabled] {
+    background-color: $pressed-color;
+    opacity: 0.5;
+  }
+}

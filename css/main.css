@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+}
+
+body {
+  background-color: #222222;
+}
+
+button {
+  padding: 20px;
+  border-radius: 17px;
+  background-color: #3b3b3b;
+  border: none;
+  font-size: 24px;
+  font-weight: 500;
+  opacity: 1;
+}
+button:hover {
+  background-color: #464646;
+}
+button:disabled, button[disabled] {
+  background-color: #464646;
+  opacity: 0.5;
+}
+
+.lamp__bulb.basic.on + .lamp__light, .lamp__bulb.basic {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  top: 181px;
+  left: calc(50% - 35px);
+  height: 70px;
+  width: 70px;
+  background-color: #222222;
+  border-radius: 50%;
+}
+
+.lamp__bulb.eco.on + .lamp__light, .lamp__bulb.eco {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  top: 185px;
+  left: calc(50% - 15px);
+  height: 40px;
+  width: 30px;
+  background-color: #222222;
+  border-radius: 0 0 10px 10px;
+}
+
+.lamp__bulb.led.on + .lamp__light, .lamp__bulb.led {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  top: 181px;
+  left: calc(50% - 25px);
+  height: 50px;
+  width: 50px;
+  background-color: #222222;
+  border-radius: 50%;
+}
+
+.lamp {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 70vh;
+}
+.lamp__wire {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1px);
+  height: 150px;
+  width: 2px;
+  background-color: #636363;
+}
+.lamp__patron {
+  display: block;
+  position: absolute;
+  top: 150px;
+  left: calc(50% - 15px);
+  height: 35px;
+  width: 30px;
+  border: solid 2px;
+  background-color: #636363;
+  border-color: #636363 #636363 transparent #636363;
+  border-radius: 25px 25px 0 0;
+}
+.lamp__bulb.basic {
+  border: solid 2px #636363;
+}
+.lamp__bulb.basic.on + .lamp__light {
+  border-color: yellow;
+  background-color: yellow;
+  box-shadow: 0 0 50px yellow, 0 0 100px yellow, 0 0 150px yellow, 0 0 200px yellow, 0 0 250px yellow, 0 0 300px yellow, 0 0 350px;
+  opacity: 1;
+}
+.lamp__bulb.eco {
+  border: solid 2px #636363;
+}
+.lamp__bulb.eco.on + .lamp__light {
+  border-color: antiquewhite;
+  background-color: antiquewhite;
+  box-shadow: 0 0 50px antiquewhite, 0 0 100px antiquewhite, 0 0 150px antiquewhite, 0 0 200px antiquewhite, 0 0 250px antiquewhite, 0 0 300px antiquewhite, 0 0 350px;
+  opacity: 1;
+}
+.lamp__bulb.led {
+  border: solid 2px #636363;
+}
+.lamp__bulb.led.on + .lamp__light {
+  border-color: #c1ebff;
+  background-color: #c1ebff;
+  box-shadow: 0 0 50px #c1ebff, 0 0 100px #c1ebff, 0 0 150px #c1ebff, 0 0 200px #c1ebff, 0 0 250px #c1ebff, 0 0 300px #c1ebff, 0 0 350px;
+  opacity: 1;
+}
+.lamp__light {
+  opacity: 1;
+  border: none;
+  background-color: transparent;
+}
+
+.lamp-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  height: 12vh;
+}
+.lamp-buttons button {
+  width: 12vh;
+  background-position: center;
+  background-size: 70%;
+  background-repeat: no-repeat;
+}
+.lamp-buttons .toggle-lamp-type-btn {
+  background-image: url("/media/rotate-arrow.png");
+}
+.lamp-buttons .toggle-lamp-power-btn {
+  background-image: url("/media/power-btn.png");
+}
+.lamp-buttons .set-lamp-brightness-btn {
+  background-image: url("/media/brightness.png");
+}
+
+/*# sourceMappingURL=main.css.map */
