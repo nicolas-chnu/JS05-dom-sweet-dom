@@ -1,6 +1,12 @@
 @use '../abstracts' as a;
 @use '../base';
 
+%button-with-bg-img {
+  background-position: center;
+  background-size: 70%;
+  background-repeat: no-repeat;
+}
+
 button {
   $not-pressed-color: a.$gray-dark;
   $pressed-color: a.$gray;
@@ -19,4 +25,19 @@ button {
     background-color: $pressed-color;
     opacity: 0.5;
   }
+}
+
+.rotate-bg {
+  @extend %button-with-bg-img;
+  background-image: url("/media/rotate-arrow.png");
+}
+
+.power-switch-bg {
+  @extend %button-with-bg-img;
+  background-image: url("/media/power-btn.png");
+}
+
+.brightness-bg {
+  @extend %button-with-bg-img;
+  background-image: url("/media/brightness.png");
 }

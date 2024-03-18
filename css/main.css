@@ -12,7 +12,13 @@ a {
   text-decoration: none;
 }
 
-button, .go-home-container a, .task-links__item {
+.brightness-bg, .power-switch-bg, .rotate-bg {
+  background-position: center;
+  background-size: 70%;
+  background-repeat: no-repeat;
+}
+
+button, .task-links__item, .go-home-container a {
   padding: 20px;
   border-radius: 10px;
   background-color: hsl(0, 0%, 23%);
@@ -20,19 +26,31 @@ button, .go-home-container a, .task-links__item {
   opacity: 1;
   color: hsl(0, 0%, 39%);
 }
-button:hover, .go-home-container a:hover, .task-links__item:hover {
+button:hover, .task-links__item:hover, .go-home-container a:hover {
   background-color: hsl(0, 0%, 27%);
 }
-button:disabled, .go-home-container a:disabled, .task-links__item:disabled, button[disabled], .go-home-container a[disabled], [disabled].task-links__item {
+button:disabled, .task-links__item:disabled, .go-home-container a:disabled, button[disabled], [disabled].task-links__item, .go-home-container a[disabled] {
   background-color: hsl(0, 0%, 27%);
   opacity: 0.5;
+}
+
+.rotate-bg {
+  background-image: url("/media/rotate-arrow.png");
+}
+
+.power-switch-bg {
+  background-image: url("/media/power-btn.png");
+}
+
+.brightness-bg {
+  background-image: url("/media/brightness.png");
 }
 
 .lamp__bulb.basic.on + .lamp__light, .lamp__bulb.basic {
   display: block;
   position: absolute;
   z-index: 100;
-  top: 181px;
+  top: 281px;
   left: calc(50% - 35px);
   height: 70px;
   width: 70px;
@@ -44,7 +62,7 @@ button:disabled, .go-home-container a:disabled, .task-links__item:disabled, butt
   display: block;
   position: absolute;
   z-index: 100;
-  top: 185px;
+  top: 285px;
   left: calc(50% - 15px);
   height: 40px;
   width: 30px;
@@ -56,7 +74,7 @@ button:disabled, .go-home-container a:disabled, .task-links__item:disabled, butt
   display: block;
   position: absolute;
   z-index: 100;
-  top: 181px;
+  top: 281px;
   left: calc(50% - 25px);
   height: 50px;
   width: 50px;
@@ -66,21 +84,25 @@ button:disabled, .go-home-container a:disabled, .task-links__item:disabled, butt
 
 .lamp {
   display: block;
-  position: relative;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -500px;
+  left: 0;
 }
 .lamp__wire {
   display: block;
   position: absolute;
   top: 0;
   left: calc(50% - 1px);
-  height: 150px;
+  height: 250px;
   width: 2px;
   background-color: hsl(0, 0%, 39%);
 }
 .lamp__patron {
   display: block;
   position: absolute;
-  top: 150px;
+  top: 250px;
   left: calc(50% - 15px);
   height: 35px;
   width: 30px;
@@ -129,6 +151,42 @@ button:disabled, .go-home-container a:disabled, .task-links__item:disabled, butt
   margin: 0 auto;
 }
 
+.action-btn-set {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 0 70px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 17px;
+  justify-content: space-between;
+  height: 110px;
+}
+.action-buttons button, .action-buttons .go-home-container a, .go-home-container .action-buttons a {
+  height: 110px;
+  width: 100%;
+}
+
+.go-home-container {
+  display: flex;
+}
+.go-home-container a {
+  text-align: center;
+  font-size: 24px;
+  padding: 14px;
+  width: 100%;
+}
+
+.canvas {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 450px;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -154,51 +212,6 @@ button:disabled, .go-home-container a:disabled, .task-links__item:disabled, butt
   border-radius: 10px;
   color: hsl(0, 0%, 80%);
   font-weight: 300;
-}
-
-.lamp-container {
-  display: block;
-  width: 100%;
-  height: 450px;
-}
-
-.lamp-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  height: 100px;
-  padding: 0 70px;
-}
-.lamp-buttons button, .lamp-buttons .go-home-container a, .go-home-container .lamp-buttons a {
-  height: 100px;
-  width: 100px;
-  background-position: center;
-  background-size: 70%;
-  background-repeat: no-repeat;
-}
-.lamp-buttons .toggle-lamp-type-btn {
-  background-image: url("/media/rotate-arrow.png");
-}
-.lamp-buttons .toggle-lamp-power-btn {
-  background-image: url("/media/power-btn.png");
-}
-.lamp-buttons .set-lamp-brightness-btn {
-  background-image: url("/media/brightness.png");
-}
-
-.go-home-container {
-  margin-top: 17px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 70px;
-}
-.go-home-container a {
-  text-align: center;
-  font-size: 24px;
-  padding: 14px;
-  width: 100%;
 }
 
 /*# sourceMappingURL=main.css.map */

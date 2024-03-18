@@ -1,0 +1,38 @@
+@use '../base' as b;
+@use '../components' as comp;
+
+$gap: 17px;
+
+.action-btn-set {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  padding: 0 70px;
+}
+
+.action-buttons {
+  $action-btn-side: 110px;
+
+  display: flex;
+  flex-direction: row;
+  gap: $gap;
+  justify-content: space-between;
+  height: $action-btn-side;
+
+  button {
+    height: $action-btn-side;
+    width: 100%;
+  }
+}
+
+.go-home-container {
+  display: flex;
+
+  a {
+    @extend button;
+    text-align: center;
+    font-size: 24px;
+    padding: 14px;
+    width: 100%;
+  }
+}

@@ -2,7 +2,7 @@
 @use '../abstracts' as a;
 
 $wire-w: 2px;
-$wire-h: 150px;
+$wire-h: 250px;
 $wire-color: a.$gray-light;
 $patron-w: 30px;
 $patron-h: 35px;
@@ -61,7 +61,11 @@ $patron-h: 35px;
 
 .lamp {
   display: block;
-  position: relative;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -500px;
+  left: 0;
 
   &__wire {
     display: block;
