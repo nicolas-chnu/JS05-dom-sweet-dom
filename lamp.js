@@ -15,30 +15,47 @@ function updateSleepTimeout() {
     timeout = getSleepTimeout();
 }
 
-window.onmousemove = () => updateSleepTimeout();
-window.onkeydown = () => updateSleepTimeout();
-window.onwheel = () => updateSleepTimeout();
+function getCurrentLampType() {
+    return bulb.classList.item(1);
+}
 
-window.onload = () => {
-    let type = bulb.classList.item(1);
+function updateSetBrightnessAbility(type) {
     setLampBrightnessBtn.disabled = type !== 'led';
 }
 
-toggleLampTypeBtn.onclick = () => {
-    const lampTypes = ['basic', 'eco', 'led'];
-    let current = bulb.classList.item(1);
-    let newType = lampTypes[(lampTypes.indexOf(current) + 1) % (lampTypes.length)];
+function switchLampType() {
+    let current = getCurrentLampType();
+    let newType = getNextLampType(current);
 
-    setLampBrightnessBtn.disabled = newType !== 'led';
+    updateLampType(current, newType);
+}
+
+function updateLampType(before, after) {
+    updateSetBrightnessAbility(after);
+
     bulb.nextElementSibling.style.opacity = '1';
-    bulb.classList.replace(current, newType);
+    bulb.classList.replace(before, after);
 }
 
-toggleLampPowerBtn.onclick = () => {
-    bulb.classList.contains('on') ? bulb.classList.remove('on') : bulb.classList.add('on');
+function getNextLampType(currentType) {
+    const lampTypes = ['basic', 'eco', 'led'];
+    return lampTypes[(lampTypes.indexOf(currentType) + 1) % (lampTypes.length)];
 }
 
-setLampBrightnessBtn.onclick = () => {
-    let brightness = Math.max(0, Math.min(+prompt('Enter brightness from 0 to 100'), 100));
-    bulb.nextElementSibling.style.opacity = (brightness / 100).toString();
+function promptLampBrightness() {
+    return Math.max(0, Math.min(+prompt('Enter brightness from 0 to 100'), 100)) / 100;
 }
+
+function updateBrightness() {
+    bulb.nextElementSibling.style.opacity = promptLampBrightness().toString();
+}
+
+window.onmousemove = () => updateSleepTimeout();
+window.onkeydown = () => updateSleepTimeout();
+window.onwheel = () => updateSleepTimeout();
+window.onload = () => updateSetBrightnessAbility(getCurrentLampType())
+
+toggleLampTypeBtn.onclick = () => switchLampType()
+toggleLampPowerBtn.onclick = () => bulb.classList.toggle('on');
+
+setLampBrightnessBtn.onclick = () => updateBrightness();
