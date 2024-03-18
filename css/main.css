@@ -12,19 +12,18 @@ a {
   text-decoration: none;
 }
 
-button, .task-links__item {
+button, .go-home-container a, .task-links__item {
   padding: 20px;
-  border-radius: 17px;
+  border-radius: 10px;
   background-color: hsl(0, 0%, 23%);
   border: none;
-  font-size: 24px;
-  font-weight: 500;
   opacity: 1;
+  color: hsl(0, 0%, 39%);
 }
-button:hover, .task-links__item:hover {
+button:hover, .go-home-container a:hover, .task-links__item:hover {
   background-color: hsl(0, 0%, 27%);
 }
-button:disabled, .task-links__item:disabled, button[disabled], [disabled].task-links__item {
+button:disabled, .go-home-container a:disabled, .task-links__item:disabled, button[disabled], .go-home-container a[disabled], [disabled].task-links__item {
   background-color: hsl(0, 0%, 27%);
   opacity: 0.5;
 }
@@ -68,8 +67,6 @@ button:disabled, .task-links__item:disabled, button[disabled], [disabled].task-l
 .lamp {
   display: block;
   position: relative;
-  width: 100%;
-  height: 70vh;
 }
 .lamp__wire {
   display: block;
@@ -143,7 +140,7 @@ button:disabled, .task-links__item:disabled, button[disabled], [disabled].task-l
   width: 100%;
   text-align: center;
   font-size: 50px;
-  font-family: hsl(0, 0%, 80%);
+  font-family: "Inter", sans-serif;
   color: hsl(0, 0%, 80%);
 }
 
@@ -159,16 +156,23 @@ button:disabled, .task-links__item:disabled, button[disabled], [disabled].task-l
   font-weight: 300;
 }
 
+.lamp-container {
+  display: block;
+  width: 100%;
+  height: 450px;
+}
+
 .lamp-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  gap: 18px;
+  justify-content: space-between;
   width: 100%;
-  height: 12vh;
+  height: 100px;
+  padding: 0 70px;
 }
-.lamp-buttons button {
-  width: 12vh;
+.lamp-buttons button, .lamp-buttons .go-home-container a, .go-home-container .lamp-buttons a {
+  height: 100px;
+  width: 100px;
   background-position: center;
   background-size: 70%;
   background-repeat: no-repeat;
@@ -181,6 +185,20 @@ button:disabled, .task-links__item:disabled, button[disabled], [disabled].task-l
 }
 .lamp-buttons .set-lamp-brightness-btn {
   background-image: url("/media/brightness.png");
+}
+
+.go-home-container {
+  margin-top: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 70px;
+}
+.go-home-container a {
+  text-align: center;
+  font-size: 24px;
+  padding: 14px;
+  width: 100%;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -6,12 +6,11 @@ button {
   $pressed-color: a.$gray;
 
   padding: 20px;
-  border-radius: 17px;
+  border-radius: 10px;
   background-color: $not-pressed-color;
   border: none;
-  font-size: 24px;
-  font-weight: 500;
   opacity: 1;
+  color: a.$gray-light;
 
   &:hover {
     background-color: $pressed-color;

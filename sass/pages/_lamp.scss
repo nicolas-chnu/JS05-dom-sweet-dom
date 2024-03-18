@@ -1,15 +1,27 @@
 @use '../base' as b;
+@use '../components' as comp;
+
+$buttons-padding: 70px;
+
+.lamp-container {
+  display: block;
+  width: 100%;
+  height: 450px;
+}
 
 .lamp-buttons {
+  $action-btn-side: 100px;
+
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  gap: 18px;
+  justify-content: space-between;
   width: 100%;
-  height: 12vh;
+  height: $action-btn-side;
+  padding: 0 $buttons-padding;
 
   button {
-    width: 12vh;
+    height: $action-btn-side;
+    width: $action-btn-side;
     background-position: center;
     background-size: 70%;
     background-repeat: no-repeat;
@@ -25,5 +37,21 @@
 
   .set-lamp-brightness-btn {
     background-image: url("/media/brightness.png");
+  }
+}
+
+.go-home-container {
+  margin-top: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 $buttons-padding;
+
+  a {
+    @extend button;
+    text-align: center;
+    font-size: 24px;
+    padding: 14px;
+    width: 100%;
   }
 }
