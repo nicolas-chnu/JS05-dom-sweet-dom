@@ -5,23 +5,27 @@
 }
 
 body {
-  background-color: #222222;
+  background-color: hsl(0, 0%, 13%);
 }
 
-button {
+a {
+  text-decoration: none;
+}
+
+button, .task-links__item {
   padding: 20px;
   border-radius: 17px;
-  background-color: #3b3b3b;
+  background-color: hsl(0, 0%, 23%);
   border: none;
   font-size: 24px;
   font-weight: 500;
   opacity: 1;
 }
-button:hover {
-  background-color: #464646;
+button:hover, .task-links__item:hover {
+  background-color: hsl(0, 0%, 27%);
 }
-button:disabled, button[disabled] {
-  background-color: #464646;
+button:disabled, .task-links__item:disabled, button[disabled], [disabled].task-links__item {
+  background-color: hsl(0, 0%, 27%);
   opacity: 0.5;
 }
 
@@ -33,7 +37,7 @@ button:disabled, button[disabled] {
   left: calc(50% - 35px);
   height: 70px;
   width: 70px;
-  background-color: #222222;
+  background-color: hsl(0, 0%, 13%);
   border-radius: 50%;
 }
 
@@ -45,7 +49,7 @@ button:disabled, button[disabled] {
   left: calc(50% - 15px);
   height: 40px;
   width: 30px;
-  background-color: #222222;
+  background-color: hsl(0, 0%, 13%);
   border-radius: 0 0 10px 10px;
 }
 
@@ -57,7 +61,7 @@ button:disabled, button[disabled] {
   left: calc(50% - 25px);
   height: 50px;
   width: 50px;
-  background-color: #222222;
+  background-color: hsl(0, 0%, 13%);
   border-radius: 50%;
 }
 
@@ -74,7 +78,7 @@ button:disabled, button[disabled] {
   left: calc(50% - 1px);
   height: 150px;
   width: 2px;
-  background-color: #636363;
+  background-color: hsl(0, 0%, 39%);
 }
 .lamp__patron {
   display: block;
@@ -84,12 +88,12 @@ button:disabled, button[disabled] {
   height: 35px;
   width: 30px;
   border: solid 2px;
-  background-color: #636363;
-  border-color: #636363 #636363 transparent #636363;
+  background-color: hsl(0, 0%, 39%);
+  border-color: hsl(0, 0%, 39%) hsl(0, 0%, 39%) transparent hsl(0, 0%, 39%);
   border-radius: 25px 25px 0 0;
 }
 .lamp__bulb.basic {
-  border: solid 2px #636363;
+  border: solid 2px hsl(0, 0%, 39%);
 }
 .lamp__bulb.basic.on + .lamp__light {
   border-color: yellow;
@@ -98,7 +102,7 @@ button:disabled, button[disabled] {
   opacity: 1;
 }
 .lamp__bulb.eco {
-  border: solid 2px #636363;
+  border: solid 2px hsl(0, 0%, 39%);
 }
 .lamp__bulb.eco.on + .lamp__light {
   border-color: antiquewhite;
@@ -107,7 +111,7 @@ button:disabled, button[disabled] {
   opacity: 1;
 }
 .lamp__bulb.led {
-  border: solid 2px #636363;
+  border: solid 2px hsl(0, 0%, 39%);
 }
 .lamp__bulb.led.on + .lamp__light {
   border-color: #c1ebff;
@@ -119,6 +123,40 @@ button:disabled, button[disabled] {
   opacity: 1;
   border: none;
   background-color: transparent;
+}
+
+.container {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+}
+.header__title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+  font-family: hsl(0, 0%, 80%);
+  color: hsl(0, 0%, 80%);
+}
+
+.task-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.task-links__item {
+  font-size: 20px;
+  border-radius: 10px;
+  color: hsl(0, 0%, 80%);
+  font-weight: 300;
 }
 
 .lamp-buttons {
