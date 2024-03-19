@@ -1,24 +1,24 @@
-// buttons
-let toggleLampTypeBtn = document.querySelector('.toggle-lamp-type-btn');
-let toggleLampPowerBtn = document.querySelector('.toggle-lamp-power-btn');
-let setLampBrightnessBtn = document.querySelector('.set-lamp-brightness-btn');
-
-let bulb = document.querySelector('.lamp__bulb');
-let timeout = getSleepTimeout();
-
 const duration = 1000;
-const animationLength = 400;
-let lamp = document.querySelector('.lamp');
+const animationLen = 400;
 const initialLampTop = -100;
 
-// ------------ animation ---------------
+let toggleLampTypeBtn = document.querySelector('.toggle-lamp-type-btn');
+let toggleLampPowerBtn = document.querySelector('.toggle-lamp-power-btn');
 
-function animate({timing, draw, duration}) {
+let setLampBrightnessBtn = document.querySelector('.set-lamp-brightness-btn');
+let bulb = document.querySelector('.lamp__bulb');
+let lamp = document.querySelector('.lamp');
+let timeout = getSleepTimeout();
+
+function animatePro(timing, draw, duration) {
     let start = performance.now();
 
-    requestAnimationFrame(function animate(time) {
-        let timeFraction = (time - start) / duration;
-        if (timeFraction > 1) timeFraction = 1;
+    let animate = (time) => {
+        let timeFraction = (time - start) / duration;   // from 0 to 1
+
+        if (timeFraction > 1) {
+            timeFraction = 1;
+        }
 
         let progress = timing(timeFraction)
 
@@ -27,10 +27,10 @@ function animate({timing, draw, duration}) {
         if (timeFraction < 1) {
             requestAnimationFrame(animate);
         }
-    });
+    }
+    requestAnimationFrame(animate);
 }
 
-// Time fraction is from 0 to 1
 function bowShooting(timeFraction) {
     let x = 1.5;
     return Math.pow(timeFraction, 2) * ((x + 1) * timeFraction - x)
@@ -44,39 +44,19 @@ function bounce(timeFraction) {
     }
 }
 
-function makeEaseOut(timing) {
-    return function(timeFraction) {
-        return 1 - timing(1 - timeFraction);
-    }
-}
-
-function drawLampUp(progress) {
-    lamp.style.top = initialLampTop - progress * animationLength + 'px';
-    // lamp.style.top = -100 - progress * 400 + 'px';
-}
-
-function drawLampDown(progress) {
-    lamp.style.top = initialLampTop - animationLength + progress * animationLength + 'px';
-    // lamp.style.top = -500 + progress * 400 + 'px';
-}
-
 function animateLampUp() {
-    animate({
-        timing: bowShooting,
-        draw: drawLampUp,
-        duration: duration
-    });
+    animatePro(
+        bowShooting,
+        (progress) => lamp.style.top = initialLampTop - progress * animationLen + 'px',
+        duration);
 }
 
 function animateLampDown() {
-    animate({
-        timing: makeEaseOut(bounce),
-        draw: drawLampDown,
-        duration: duration
-    });
+    animatePro(
+        (timeFraction) => 1 - bounce(1 - timeFraction),     // bounce ease out
+        (progress) => lamp.style.top = initialLampTop - animationLen + progress * animationLen + 'px',
+        duration);
 }
-
-// ------------------------------------
 
 function getSleepTimeout() {
     return setTimeout(() => bulb.classList.remove('on'), 5000);
@@ -103,7 +83,7 @@ function switchLampType() {
 
     setTimeout(() => {
         updateLampType(current, newType);
-        animateLampDown(); // Start the down animation
+        animateLampDown();
     }, duration + 500);
 }
 
@@ -128,8 +108,10 @@ function updateBrightness() {
 }
 
 window.onmousemove = () => updateSleepTimeout();
+window.onmousedown = () => updateSleepTimeout();
 window.onkeydown = () => updateSleepTimeout();
 window.onwheel = () => updateSleepTimeout();
+
 window.onload = () => {
     updateSetBrightnessAbility(getCurrentLampType());
     setTimeout(animateLampDown, 500);
