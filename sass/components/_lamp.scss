@@ -90,44 +90,42 @@ $patron-h: 35px;
     border-radius: 25px 25px 0 0;
   }
 
-  &__bulb {
-    &.basic {
-      $basic-light-color: yellow;
+  &[lamp-type='basic'] &__bulb {
+    $basic-light-color: yellow;
 
+    @extend %basic-bulb-shape;
+    border: solid 2px $wire-color;
+
+    &.on + .lamp__light {
       @extend %basic-bulb-shape;
-      border: solid 2px $wire-color;
-
-      &.on + .lamp__light {
-        @extend %basic-bulb-shape;
-        @include lamp-light($basic-light-color);
-        opacity: 1;
-      }
+      @include lamp-light($basic-light-color);
+      opacity: 1;
     }
+  }
 
-    &.eco {
-      $eco-light-color: antiquewhite;
+  &[lamp-type='eco'] &__bulb {
+    $eco-light-color: antiquewhite;
 
+    @extend %eco-bulb-shape;
+    border: solid 2px $wire-color;
+
+    &.on + .lamp__light {
       @extend %eco-bulb-shape;
-      border: solid 2px $wire-color;
-
-      &.on + .lamp__light {
-        @extend %eco-bulb-shape;
-        @include lamp-light($eco-light-color);
-        opacity: 1;
-      }
+      @include lamp-light($eco-light-color);
+      opacity: 1;
     }
+  }
 
-    &.led {
-      $led-light-color: #c1ebff;
+  &[lamp-type='led'] &__bulb {
+    $led-light-color: #c1ebff;
 
+    @extend %led-bulb-shape;
+    border: solid 2px $wire-color;
+
+    &.on + .lamp__light {
       @extend %led-bulb-shape;
-      border: solid 2px $wire-color;
-
-      &.on + .lamp__light {
-        @extend %led-bulb-shape;
-        @include lamp-light($led-light-color);
-        opacity: 1;
-      }
+      @include lamp-light($led-light-color);
+      opacity: 1;
     }
   }
 

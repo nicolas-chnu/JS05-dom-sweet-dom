@@ -12,9 +12,9 @@ a {
   text-decoration: none;
 }
 
-.brightness-bg, .power-switch-bg, .rotate-bg {
+.duration-bg, .brightness-bg, .power-switch-bg, .next-bg, .rotate-bg {
   background-position: center;
-  background-size: 70%;
+  background-size: auto 70%;
   background-repeat: no-repeat;
 }
 
@@ -38,6 +38,11 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   background-image: url("/media/rotate-arrow.png");
 }
 
+.next-bg {
+  background-size: auto 65%;
+  background-image: url("/media/next.png");
+}
+
 .power-switch-bg {
   background-image: url("/media/power-btn.png");
 }
@@ -46,7 +51,11 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   background-image: url("/media/brightness.png");
 }
 
-.lamp__bulb.basic.on + .lamp__light, .lamp__bulb.basic {
+.duration-bg {
+  background-image: url("/media/duration.png");
+}
+
+.lamp[lamp-type=basic] .lamp__bulb.on + .lamp__light, .lamp[lamp-type=basic] .lamp__bulb {
   display: block;
   position: absolute;
   z-index: 100;
@@ -58,7 +67,7 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   border-radius: 50%;
 }
 
-.lamp__bulb.eco.on + .lamp__light, .lamp__bulb.eco {
+.lamp[lamp-type=eco] .lamp__bulb.on + .lamp__light, .lamp[lamp-type=eco] .lamp__bulb {
   display: block;
   position: absolute;
   z-index: 100;
@@ -70,7 +79,7 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   border-radius: 0 0 10px 10px;
 }
 
-.lamp__bulb.led.on + .lamp__light, .lamp__bulb.led {
+.lamp[lamp-type=led] .lamp__bulb.on + .lamp__light, .lamp[lamp-type=led] .lamp__bulb {
   display: block;
   position: absolute;
   z-index: 100;
@@ -111,28 +120,28 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   border-color: hsl(0, 0%, 39%) hsl(0, 0%, 39%) transparent hsl(0, 0%, 39%);
   border-radius: 25px 25px 0 0;
 }
-.lamp__bulb.basic {
+.lamp[lamp-type=basic] .lamp__bulb {
   border: solid 2px hsl(0, 0%, 39%);
 }
-.lamp__bulb.basic.on + .lamp__light {
+.lamp[lamp-type=basic] .lamp__bulb.on + .lamp__light {
   border-color: yellow;
   background-color: yellow;
   box-shadow: 0 0 50px yellow, 0 0 100px yellow, 0 0 150px yellow, 0 0 200px yellow, 0 0 250px yellow, 0 0 300px yellow, 0 0 350px;
   opacity: 1;
 }
-.lamp__bulb.eco {
+.lamp[lamp-type=eco] .lamp__bulb {
   border: solid 2px hsl(0, 0%, 39%);
 }
-.lamp__bulb.eco.on + .lamp__light {
+.lamp[lamp-type=eco] .lamp__bulb.on + .lamp__light {
   border-color: antiquewhite;
   background-color: antiquewhite;
   box-shadow: 0 0 50px antiquewhite, 0 0 100px antiquewhite, 0 0 150px antiquewhite, 0 0 200px antiquewhite, 0 0 250px antiquewhite, 0 0 300px antiquewhite, 0 0 350px;
   opacity: 1;
 }
-.lamp__bulb.led {
+.lamp[lamp-type=led] .lamp__bulb {
   border: solid 2px hsl(0, 0%, 39%);
 }
-.lamp__bulb.led.on + .lamp__light {
+.lamp[lamp-type=led] .lamp__bulb.on + .lamp__light {
   border-color: #c1ebff;
   background-color: #c1ebff;
   box-shadow: 0 0 50px #c1ebff, 0 0 100px #c1ebff, 0 0 150px #c1ebff, 0 0 200px #c1ebff, 0 0 250px #c1ebff, 0 0 300px #c1ebff, 0 0 350px;
@@ -142,6 +151,80 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   opacity: 1;
   border: none;
   background-color: transparent;
+}
+
+.traffic-lights-container {
+  position: relative;
+}
+
+.traffic-lights {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: calc(50% - 260px / 2);
+  left: calc(50% - 100px / 2);
+  height: 260px;
+  width: 100px;
+  border: solid 2px hsl(0, 0%, 39%);
+  border-radius: 10px;
+}
+.traffic-lights__red {
+  width: 70px;
+  height: 70px;
+  border: solid 2px hsl(0, 0%, 39%);
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.5s;
+}
+.traffic-lights__red.on {
+  background-color: hsl(7, 90%, 50%);
+}
+.traffic-lights__yellow {
+  width: 70px;
+  height: 70px;
+  border: solid 2px hsl(0, 0%, 39%);
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.5s;
+}
+.traffic-lights__yellow.on {
+  background-color: hsl(47, 90%, 50%);
+}
+.traffic-lights__green {
+  width: 70px;
+  height: 70px;
+  border: solid 2px hsl(0, 0%, 39%);
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.5s;
+}
+.traffic-lights__green.on {
+  background-color: hsl(100, 90%, 46%);
+}
+
+input[type=month] {
+  outline: none;
+  border: solid 2px hsl(0, 0%, 39%);
+  background-color: transparent;
+  color: hsl(0, 0%, 39%);
+  padding: 4px 4px 4px 12px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+input[type=month]:focus {
+  color: hsl(0, 0%, 80%);
+  border-color: hsl(0, 0%, 80%);
+}
+input[type=month]::-webkit-inner-spin-button, input[type=month]::-webkit-calendar-picker-indicator {
+  background-color: hsl(0, 0%, 39%);
+  padding: 5px;
+  border-radius: 5px;
+  transition: background-color 0.5s;
+}
+input[type=month]::-webkit-inner-spin-button:hover, input[type=month]::-webkit-calendar-picker-indicator:hover {
+  background-color: hsl(0, 0%, 80%);
 }
 
 .container {
@@ -166,8 +249,11 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   height: 110px;
 }
 .action-buttons button, .action-buttons .go-home-container a, .go-home-container .action-buttons a {
-  height: 110px;
+  height: 100%;
   width: 100%;
+}
+.action-buttons.thin {
+  height: 80px;
 }
 
 .go-home-container {
@@ -181,10 +267,19 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
 }
 
 .canvas {
-  display: block;
+  display: grid;
+  grid-template-rows: 1fr auto;
   position: relative;
   width: 100%;
   height: 450px;
+}
+
+.centered-block {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .header {
@@ -212,6 +307,38 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   border-radius: 10px;
   color: hsl(0, 0%, 80%);
   font-weight: 300;
+}
+
+.active-light {
+  display: block;
+  position: relative;
+  padding: 30px;
+  text-align: center;
+  color: hsl(0, 0%, 80%);
+  font-size: 24px;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 30px;
+  border: solid 2px hsl(0, 0%, 39%);
+  border-radius: 20px;
+  color: hsl(0, 0%, 80%);
+}
+.calendar td {
+  text-align: center;
+  padding: 7px;
+  border-radius: 50%;
+}
+.calendar td.show {
+  cursor: pointer;
+  background-color: hsl(0, 0%, 23%);
+  transition: background-color 0.3s;
+}
+.calendar td.show:hover {
+  background-color: hsl(0, 0%, 39%);
 }
 
 /*# sourceMappingURL=main.css.map */

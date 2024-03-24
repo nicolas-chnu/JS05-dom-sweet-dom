@@ -3,23 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Traffic Lights</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 <div class="container">
     <div class="canvas">
+        <div class="traffic-lights-container">
+            <div class="traffic-lights">
+                <div class="traffic-lights__red"></div>
+                <div class="traffic-lights__yellow"></div>
+                <div class="traffic-lights__green"></div>
+            </div>
+        </div>
+        <span class="active-light">Red</span>
     </div>
     <div class="action-btn-set">
-        <div class="action-buttons">
-            <button class="toggle-lamp-type-btn rotate-bg"></button>
-            <button class="toggle-lamp-power-btn power-switch-bg"></button>
-            <button class="set-lamp-brightness-btn brightness-bg"></button>
+        <div class="action-buttons thin">
+            <button class="switch-traffic-light-btn next-bg"></button>
+            <button class="prompt-duration-btn duration-bg"></button>
         </div>
         <div class="go-home-container">
-            <a href="../index.html">Go home</a>
+            <a href="../index.html">Home</a>
         </div>
     </div>
 </div>
 
-<script src="../scripts/traffic-lights.js"></script>
+<script src="../scripts/t-lights.js"></script>
 </body>
 </html>

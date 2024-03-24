@@ -20,8 +20,12 @@ $gap: 17px;
   height: $action-btn-side;
 
   button {
-    height: $action-btn-side;
+    height: 100%;
     width: 100%;
+  }
+
+  &.thin {
+    height: 80px;
   }
 }
 

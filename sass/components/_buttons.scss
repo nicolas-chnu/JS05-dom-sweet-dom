@@ -3,7 +3,7 @@
 
 %button-with-bg-img {
   background-position: center;
-  background-size: 70%;
+  background-size: auto 70%;
   background-repeat: no-repeat;
 }
 
@@ -32,6 +32,12 @@ button {
   background-image: url("/media/rotate-arrow.png");
 }
 
+.next-bg {
+  @extend %button-with-bg-img;
+  background-size: auto 65%;
+  background-image: url("/media/next.png");
+}
+
 .power-switch-bg {
   @extend %button-with-bg-img;
   background-image: url("/media/power-btn.png");
@@ -40,4 +46,9 @@ button {
 .brightness-bg {
   @extend %button-with-bg-img;
   background-image: url("/media/brightness.png");
+}
+
+.duration-bg {
+  @extend %button-with-bg-img;
+  background-image: url("/media/duration.png");
 }

@@ -68,7 +68,7 @@ function updateSleepTimeout() {
 }
 
 function getCurrentLampType() {
-    return bulb.classList.item(1);
+    return lamp.getAttribute('lamp-type')
 }
 
 function updateSetBrightnessAbility(type) {
@@ -91,7 +91,7 @@ function updateLampType(before, after) {
     updateSetBrightnessAbility(after);
 
     bulb.nextElementSibling.style.opacity = '1';
-    bulb.classList.replace(before, after);
+    lamp.setAttribute('lamp-type', after)
 }
 
 function getNextLampType(currentType) {
