@@ -1,6 +1,7 @@
 @use '../abstracts' as a;
 
-input[type='month'] {
+input[type='month'],
+input[type='datetime-local'] {
   outline: none;
   border: solid 2px a.$gray-light;
   background-color: transparent;
