@@ -1,3 +1,5 @@
+const timerSound = new Audio('../media/success-sound.mp3')
+
 const clockValue = document.querySelector('.clock__value')
 const clockPulse = document.querySelector('.clock__pulse')
 
@@ -41,6 +43,7 @@ function setTimer() {
         if (difference <= 0) {
             clearInterval(timerInterval);
             timerValue.textContent = 'Finished!';
+            timerSound.play();
         }
     }, 1000);
 }
