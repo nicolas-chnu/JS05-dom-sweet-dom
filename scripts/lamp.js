@@ -1,3 +1,5 @@
+import {animatePro, bowShooting, bounce} from './animation.js'
+
 const duration = 1000;
 const animationLen = 400;
 const initialLampTop = -100;

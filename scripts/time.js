@@ -1,3 +1,5 @@
+import {animatePro, bowShooting} from "./animation.js";
+
 const timerSound = new Audio('../media/success-sound.mp3')
 
 const clockValue = document.querySelector('.clock__value')
