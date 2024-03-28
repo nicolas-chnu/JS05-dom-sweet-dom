@@ -12,8 +12,6 @@ button,
   $not-pressed-color: a.$gray-dark;
   $pressed-color: a.$gray;
 
-  padding: 20px;
-  border-radius: 10px;
   background-color: $not-pressed-color;
   border: none;
   opacity: 1;
