@@ -86,7 +86,7 @@ function renderCalendar() {
                 break;
             } else {
                 let dateElem = document.createElement('td')
-                dateElem.classList.add('show')
+                dateElem.classList.add('is-shown')
                 dateElem.innerText = currentDate.toString();
 
                 // use IIFE to create a new scope for each event listener
@@ -140,10 +140,11 @@ function getTimeDeltaStr(selectedDate) {
     return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds are left`;
 }
 
+monthSelector.onchange = renderCalendar;
+datePicker.onchange = setTimer;
+
 setInterval(updateClock, 1000);
 setInterval(animateClockPulse, 1000);
 
 monthSelector.valueAsDate = new Date();
 renderCalendar();
-
-datePicker.onchange = setTimer;
