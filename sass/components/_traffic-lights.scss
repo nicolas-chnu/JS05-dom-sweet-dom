@@ -21,7 +21,7 @@
   border: solid 2px $wire-color;
   border-radius: 10px;
 
-  @mixin light-circle($color) {
+  %light-circle {
     $side: $tl-width - 2 * 15px;
 
     width: $side;
@@ -30,27 +30,23 @@
     border-radius: 50%;
     background-color: transparent;
     transition: background-color 0.5s;
-
-    &.on {
-      background-color: $color;
-    }
   }
 
-  &__red {
-    $color: hsl(7, 90%, 50%);
-
-    @include light-circle($color);
-  }
-
-  &__yellow {
-    $color: hsl(47, 90%, 50%);
-
-    @include light-circle($color);
-  }
-
+  &__red,
+  &__yellow,
   &__green {
-    $color: hsl(100, 90%, 46%);
+    @extend %light-circle;
+  }
 
-    @include light-circle($color);
+  &[color='red'] &__red {
+    background-color: hsl(7, 90%, 50%);
+  }
+
+  &[color='yellow'] &__yellow {
+    background-color: hsl(47, 90%, 50%);
+  }
+
+  &[color='green'] &__green {
+    background-color: hsl(100, 90%, 46%);
   }
 }
