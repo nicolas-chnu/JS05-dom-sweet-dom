@@ -1,31 +1,20 @@
 @use '../abstracts' as a;
-@use '../components' as comps;
+@use '../components';
 
-$text-color: a.$white;
-
-.header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 200px;
-
-  &__title {
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-size: 50px;
-    font-family: a.$main-font;
-    color: $text-color;
-  }
+.lab-title {
+  text-align: center;
+  padding: 60px;
 }
 
 .task-links {
+  $text-color: a.$white;
+
   display: flex;
   flex-direction: column;
   gap: 10px;
 
   &__item {
-    @extend button;
+    @extend .button-base;
     font-size: 20px;
     border-radius: 10px;
     color: $text-color;

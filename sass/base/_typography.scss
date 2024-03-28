@@ -1,0 +1,19 @@
+@use '../abstracts' as a;
+
+.title {
+  $text-color: a.$white;
+
+  font-size: 50px;
+  font-weight: 400;
+  font-family: a.$main-font;
+  color: $text-color;
+}
+
+.large {
+  $text-color: a.$white;
+
+  font-size: 40px;
+  font-weight: 400;
+  font-family: a.$main-font;
+  color: $text-color;
+}
