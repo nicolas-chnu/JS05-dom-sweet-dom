@@ -7,7 +7,8 @@
   background-repeat: no-repeat;
 }
 
-button {
+button,
+.button-base {
   $not-pressed-color: a.$gray-dark;
   $pressed-color: a.$gray;
 
@@ -27,28 +28,53 @@ button {
   }
 }
 
-.rotate-bg {
+.rotate-icon {
   @extend %button-with-bg-img;
   background-image: url("/media/rotate-arrow.png");
 }
 
-.next-bg {
+.next-icon {
   @extend %button-with-bg-img;
   background-size: auto 65%;
   background-image: url("/media/next.png");
 }
 
-.power-switch-bg {
+.power-switch-icon {
   @extend %button-with-bg-img;
   background-image: url("/media/power-btn.png");
 }
 
-.brightness-bg {
+.brightness-icon {
   @extend %button-with-bg-img;
   background-image: url("/media/brightness.png");
 }
 
-.duration-bg {
+.duration-icon {
   @extend %button-with-bg-img;
   background-image: url("/media/duration.png");
+}
+
+.edit-icon {
+  @extend %button-with-bg-img;
+  background-image: url("/media/edit.png");
+}
+
+.inbox-icon {
+  @extend %button-with-bg-img;
+  background-image: url("/media/inbox.png");
+}
+
+.outbox-icon {
+  @extend %button-with-bg-img;
+  background-image: url("/media/outbox.png");
+}
+
+.search-icon {
+  @extend %button-with-bg-img;
+  background-image: url("/media/search.png");
+}
+
+.add-icon {
+  @extend %button-with-bg-img;
+  background-image: url("/media/add.png");
 }
