@@ -1,7 +1,9 @@
 @use '../abstracts' as a;
 
 input[type='month'],
-input[type='datetime-local'] {
+input[type='datetime-local'],
+input[type='text'] {
+  display:block;
   outline: none;
   border: solid 2px a.$gray-light;
   background-color: transparent;
@@ -26,4 +28,8 @@ input[type='datetime-local'] {
       background-color: a.$white;
     }
   }
+}
+
+input[type='text']  {
+  padding: 4px;
 }

@@ -12,50 +12,94 @@ a {
   text-decoration: none;
 }
 
-.duration-bg, .brightness-bg, .power-switch-bg, .next-bg, .rotate-bg {
+.title {
+  font-size: 50px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  color: hsl(0, 0%, 80%);
+}
+
+.large {
+  font-size: 40px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  color: hsl(0, 0%, 80%);
+}
+
+.add-icon, .search-icon, .outbox-icon, .order__direction[direction=out], .inbox-icon, .order__direction[direction=in], .edit-icon, .duration-icon, .brightness-icon, .power-switch-icon, .next-icon, .rotate-icon {
   background-position: center;
   background-size: auto 70%;
   background-repeat: no-repeat;
 }
 
-button, .task-links__item, .go-home-container a {
-  padding: 20px;
-  border-radius: 10px;
+button,
+.button-base,
+.task-links__item,
+.go-home-container a {
   background-color: hsl(0, 0%, 23%);
   border: none;
   opacity: 1;
   color: hsl(0, 0%, 39%);
 }
-button:hover, .task-links__item:hover, .go-home-container a:hover {
+button:hover,
+.button-base:hover,
+.task-links__item:hover,
+.go-home-container a:hover {
   background-color: hsl(0, 0%, 27%);
 }
-button:disabled, .task-links__item:disabled, .go-home-container a:disabled, button[disabled], [disabled].task-links__item, .go-home-container a[disabled] {
+button:disabled, button[disabled],
+.button-base:disabled,
+.task-links__item:disabled,
+.go-home-container a:disabled,
+.button-base[disabled],
+[disabled].task-links__item,
+.go-home-container a[disabled] {
   background-color: hsl(0, 0%, 27%);
   opacity: 0.5;
 }
 
-.rotate-bg {
+.rotate-icon {
   background-image: url("/media/rotate-arrow.png");
 }
 
-.next-bg {
+.next-icon {
   background-size: auto 65%;
   background-image: url("/media/next.png");
 }
 
-.power-switch-bg {
+.power-switch-icon {
   background-image: url("/media/power-btn.png");
 }
 
-.brightness-bg {
+.brightness-icon {
   background-image: url("/media/brightness.png");
 }
 
-.duration-bg {
+.duration-icon {
   background-image: url("/media/duration.png");
 }
 
-.lamp[lamp-type=basic] .lamp__bulb.on + .lamp__light, .lamp[lamp-type=basic] .lamp__bulb {
+.edit-icon {
+  background-image: url("/media/edit.png");
+}
+
+.inbox-icon, .order__direction[direction=in] {
+  background-image: url("/media/inbox.png");
+}
+
+.outbox-icon, .order__direction[direction=out] {
+  background-image: url("/media/outbox.png");
+}
+
+.search-icon {
+  background-image: url("/media/search.png");
+}
+
+.add-icon {
+  background-image: url("/media/add.png");
+}
+
+.lamp[lamp-type=basic] .lamp__bulb.is-on + .lamp__light, .lamp[lamp-type=basic] .lamp__bulb {
   display: block;
   position: absolute;
   z-index: 100;
@@ -67,7 +111,7 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   border-radius: 50%;
 }
 
-.lamp[lamp-type=eco] .lamp__bulb.on + .lamp__light, .lamp[lamp-type=eco] .lamp__bulb {
+.lamp[lamp-type=eco] .lamp__bulb.is-on + .lamp__light, .lamp[lamp-type=eco] .lamp__bulb {
   display: block;
   position: absolute;
   z-index: 100;
@@ -79,7 +123,7 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   border-radius: 0 0 10px 10px;
 }
 
-.lamp[lamp-type=led] .lamp__bulb.on + .lamp__light, .lamp[lamp-type=led] .lamp__bulb {
+.lamp[lamp-type=led] .lamp__bulb.is-on + .lamp__light, .lamp[lamp-type=led] .lamp__bulb {
   display: block;
   position: absolute;
   z-index: 100;
@@ -123,28 +167,28 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
 .lamp[lamp-type=basic] .lamp__bulb {
   border: solid 2px hsl(0, 0%, 39%);
 }
-.lamp[lamp-type=basic] .lamp__bulb.on + .lamp__light {
-  border-color: yellow;
-  background-color: yellow;
-  box-shadow: 0 0 50px yellow, 0 0 100px yellow, 0 0 150px yellow, 0 0 200px yellow, 0 0 250px yellow, 0 0 300px yellow, 0 0 350px;
+.lamp[lamp-type=basic] .lamp__bulb.is-on + .lamp__light {
+  border-color: hsl(60, 100%, 50%);
+  background-color: hsl(60, 100%, 50%);
+  box-shadow: 0 0 50px hsl(60, 100%, 50%), 0 0 100px hsl(60, 100%, 50%), 0 0 150px hsl(60, 100%, 50%), 0 0 200px hsl(60, 100%, 50%), 0 0 250px hsl(60, 100%, 50%), 0 0 300px hsl(60, 100%, 50%), 0 0 350px;
   opacity: 1;
 }
 .lamp[lamp-type=eco] .lamp__bulb {
   border: solid 2px hsl(0, 0%, 39%);
 }
-.lamp[lamp-type=eco] .lamp__bulb.on + .lamp__light {
-  border-color: antiquewhite;
-  background-color: antiquewhite;
-  box-shadow: 0 0 50px antiquewhite, 0 0 100px antiquewhite, 0 0 150px antiquewhite, 0 0 200px antiquewhite, 0 0 250px antiquewhite, 0 0 300px antiquewhite, 0 0 350px;
+.lamp[lamp-type=eco] .lamp__bulb.is-on + .lamp__light {
+  border-color: hsl(34, 78%, 91%);
+  background-color: hsl(34, 78%, 91%);
+  box-shadow: 0 0 50px hsl(34, 78%, 91%), 0 0 100px hsl(34, 78%, 91%), 0 0 150px hsl(34, 78%, 91%), 0 0 200px hsl(34, 78%, 91%), 0 0 250px hsl(34, 78%, 91%), 0 0 300px hsl(34, 78%, 91%), 0 0 350px;
   opacity: 1;
 }
 .lamp[lamp-type=led] .lamp__bulb {
   border: solid 2px hsl(0, 0%, 39%);
 }
-.lamp[lamp-type=led] .lamp__bulb.on + .lamp__light {
-  border-color: #c1ebff;
-  background-color: #c1ebff;
-  box-shadow: 0 0 50px #c1ebff, 0 0 100px #c1ebff, 0 0 150px #c1ebff, 0 0 200px #c1ebff, 0 0 250px #c1ebff, 0 0 300px #c1ebff, 0 0 350px;
+.lamp[lamp-type=led] .lamp__bulb.is-on + .lamp__light {
+  border-color: hsl(199, 100%, 88%);
+  background-color: hsl(199, 100%, 88%);
+  box-shadow: 0 0 50px hsl(199, 100%, 88%), 0 0 100px hsl(199, 100%, 88%), 0 0 150px hsl(199, 100%, 88%), 0 0 200px hsl(199, 100%, 88%), 0 0 250px hsl(199, 100%, 88%), 0 0 300px hsl(199, 100%, 88%), 0 0 350px;
   opacity: 1;
 }
 .lamp__light {
@@ -170,7 +214,7 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   border: solid 2px hsl(0, 0%, 39%);
   border-radius: 10px;
 }
-.traffic-lights__red {
+.traffic-lights .traffic-lights__red, .traffic-lights .traffic-lights__yellow, .traffic-lights .traffic-lights__green {
   width: 70px;
   height: 70px;
   border: solid 2px hsl(0, 0%, 39%);
@@ -178,34 +222,20 @@ button:disabled, .task-links__item:disabled, .go-home-container a:disabled, butt
   background-color: transparent;
   transition: background-color 0.5s;
 }
-.traffic-lights__red.on {
+.traffic-lights[color=red] .traffic-lights__red {
   background-color: hsl(7, 90%, 50%);
 }
-.traffic-lights__yellow {
-  width: 70px;
-  height: 70px;
-  border: solid 2px hsl(0, 0%, 39%);
-  border-radius: 50%;
-  background-color: transparent;
-  transition: background-color 0.5s;
-}
-.traffic-lights__yellow.on {
+.traffic-lights[color=yellow] .traffic-lights__yellow {
   background-color: hsl(47, 90%, 50%);
 }
-.traffic-lights__green {
-  width: 70px;
-  height: 70px;
-  border: solid 2px hsl(0, 0%, 39%);
-  border-radius: 50%;
-  background-color: transparent;
-  transition: background-color 0.5s;
-}
-.traffic-lights__green.on {
+.traffic-lights[color=green] .traffic-lights__green {
   background-color: hsl(100, 90%, 46%);
 }
 
 input[type=month],
-input[type=datetime-local] {
+input[type=datetime-local],
+input[type=text] {
+  display: block;
   outline: none;
   border: solid 2px hsl(0, 0%, 39%);
   background-color: transparent;
@@ -215,13 +245,16 @@ input[type=datetime-local] {
   font-size: 18px;
 }
 input[type=month]:focus,
-input[type=datetime-local]:focus {
+input[type=datetime-local]:focus,
+input[type=text]:focus {
   color: hsl(0, 0%, 80%);
   border-color: hsl(0, 0%, 80%);
 }
 input[type=month]::-webkit-inner-spin-button, input[type=month]::-webkit-calendar-picker-indicator,
 input[type=datetime-local]::-webkit-inner-spin-button,
-input[type=datetime-local]::-webkit-calendar-picker-indicator {
+input[type=datetime-local]::-webkit-calendar-picker-indicator,
+input[type=text]::-webkit-inner-spin-button,
+input[type=text]::-webkit-calendar-picker-indicator {
   background-color: hsl(0, 0%, 39%);
   padding: 5px;
   border-radius: 5px;
@@ -229,8 +262,14 @@ input[type=datetime-local]::-webkit-calendar-picker-indicator {
 }
 input[type=month]::-webkit-inner-spin-button:hover, input[type=month]::-webkit-calendar-picker-indicator:hover,
 input[type=datetime-local]::-webkit-inner-spin-button:hover,
-input[type=datetime-local]::-webkit-calendar-picker-indicator:hover {
+input[type=datetime-local]::-webkit-calendar-picker-indicator:hover,
+input[type=text]::-webkit-inner-spin-button:hover,
+input[type=text]::-webkit-calendar-picker-indicator:hover {
   background-color: hsl(0, 0%, 80%);
+}
+
+input[type=text] {
+  padding: 4px;
 }
 
 .container {
@@ -246,19 +285,19 @@ input[type=datetime-local]::-webkit-calendar-picker-indicator:hover {
   gap: 17px;
   padding: 0 70px;
 }
-
-.action-buttons {
+.action-btn-set .action-buttons {
   display: flex;
   flex-direction: row;
   gap: 17px;
   justify-content: space-between;
   height: 110px;
 }
-.action-buttons button, .action-buttons .go-home-container a, .go-home-container .action-buttons a {
+.action-btn-set .action-buttons button {
   height: 100%;
   width: 100%;
+  border-radius: 10px;
 }
-.action-buttons.thin {
+.action-btn-set .action-buttons.thin {
   height: 80px;
 }
 
@@ -266,6 +305,7 @@ input[type=datetime-local]::-webkit-calendar-picker-indicator:hover {
   display: flex;
 }
 .go-home-container a {
+  border-radius: 10px;
   text-align: center;
   font-size: 24px;
   padding: 14px;
@@ -294,19 +334,23 @@ input[type=datetime-local]::-webkit-calendar-picker-indicator:hover {
   gap: 10px;
 }
 
-.header {
+.item-list {
   display: flex;
-  align-items: center;
-  width: 100%;
-  height: 200px;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  list-style-type: none;
 }
-.header__title {
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: 50px;
-  font-family: "Inter", sans-serif;
+.item-list .item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: hsl(0, 0%, 80%);
+}
+
+.lab-title {
+  text-align: center;
+  padding: 60px;
 }
 
 .task-links {
@@ -317,6 +361,7 @@ input[type=datetime-local]::-webkit-calendar-picker-indicator:hover {
 .task-links__item {
   font-size: 20px;
   border-radius: 10px;
+  padding: 20px;
   color: hsl(0, 0%, 80%);
   font-weight: 300;
 }
@@ -389,13 +434,157 @@ input[type=datetime-local]::-webkit-calendar-picker-indicator:hover {
   padding: 7px;
   border-radius: 50%;
 }
-.calendar td.show {
+.calendar td.is-shown {
   cursor: pointer;
   background-color: hsl(0, 0%, 23%);
   transition: background-color 0.3s;
 }
-.calendar td.show:hover {
+.calendar td.is-shown:hover {
   background-color: hsl(0, 0%, 39%);
+}
+
+.store-title {
+  text-align: center;
+  padding: 30px;
+}
+
+.product-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.product-section__toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 30px;
+  position: relative;
+}
+.product-section__toolbar .search-product {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  justify-content: right;
+}
+
+.product-section__stats {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+.product-section__stats .stats__title {
+  font-size: 13px;
+  color: hsl(0, 0%, 39%);
+  font-weight: 400;
+  padding: 5px 0;
+  text-wrap: nowrap;
+  vertical-align: center;
+}
+.product-section__stats .stats-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 0;
+  list-style-type: none;
+}
+.product-section__stats .stats-list__item {
+  color: hsl(0, 0%, 13%);
+  padding: 5px;
+  font-size: 11px;
+  background-color: hsl(0, 0%, 27%);
+  border-radius: 5px;
+}
+
+.product {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 0 5px 5px;
+}
+.product .product-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  font-size: 16px;
+  padding: 10px 0;
+}
+.product .product-info__name {
+  width: 150px;
+}
+.product .product-info__price {
+  width: 100px;
+}
+.product .product-info__quantity {
+  width: 100px;
+  font-size: 14px;
+  color: hsl(0, 0%, 39%);
+}
+.product .product-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.product:hover .product-actions {
+  opacity: 1;
+}
+
+.search-product-btn {
+  background-size: auto 50%;
+}
+
+.search-product-btn,
+.create-product-btn,
+.product-actions button {
+  width: 30px;
+  height: 30px;
+  background-color: hsl(0, 0%, 80%);
+  border-radius: 10px;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.search-product-btn:hover,
+.create-product-btn:hover,
+.product-actions button:hover {
+  background-color: hsl(0, 0%, 80%);
+  opacity: 1;
+}
+
+.order-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+}
+.order-section__title {
+  color: hsl(0, 0%, 80%);
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.order {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  font-size: 16px;
+  padding: 5px 0 5px 5px;
+}
+.order__time {
+  width: 80px;
+}
+.order__name {
+  width: 250px;
+}
+.order__direction {
+  width: 30px;
+  height: 30px;
 }
 
 /*# sourceMappingURL=main.css.map */
