@@ -1,54 +1,54 @@
 export class TrafficLights {
-    onLightChange = (index, isOn) => {}
+    #onLightChange;
     #current = 0;
     #cancellationToken;
+    #lights = [];
 
-    constructor(redTime, yellowTime, greenTime) {
-        this.lights = [
-            new Light(redTime, 1),
-            new Light(yellowTime, 1),
-            new Light(greenTime, 1),
-            new Light(yellowTime, 3)
-        ];
+    constructor(onLightChange) {
+        this.#onLightChange = onLightChange;
     }
-
-    static getNextIndex(index) {
-        return (index + 1) % 4;
+    
+    addLight(light) {
+        this.#lights.push(light)
     }
 
     startLights() {
         this.#cancellationToken = new CancellationToken();
 
-        this.setLight(this.#current, this.onLightChange, this.#cancellationToken)
-    }
-
-    setLight(lightIndex, handler, cancellationToken) {
-        this.#current = lightIndex;
-
-        if (!cancellationToken.isCancelled) {
-            let light = this.lights[lightIndex];
-            light.start((isOn) => this.onLightChange(lightIndex, isOn), cancellationToken)
-
-            setTimeout(
-                () => this.setLight(TrafficLights.getNextIndex(lightIndex), handler, cancellationToken),
-                light.duration)
-        }
+        this.#setLight(this.#current, this.#onLightChange, this.#cancellationToken)
     }
 
     switchToNextLight() {
         this.#cancellationToken.cancel();
 
-        for (let light of this.lights) {
+        for (let light of this.#lights) {
             light.turnOff()
         }
-        this.onLightChange(this.#current, false)
-        this.#current = TrafficLights.getNextIndex(this.#current);
+        this.#onLightChange(this.#current, false)
+        this.#current = this.#getNextIndex(this.#current);
 
         this.startLights()
     }
 
     changeLightTime(index, millis) {
-        this.lights[index].duration = millis;
+        this.#lights[index].duration = millis;
+    }
+
+    #setLight(lightIndex, handler, cancellationToken) {
+        this.#current = lightIndex;
+
+        if (!cancellationToken.isCancelled) {
+            let light = this.#lights[lightIndex];
+            light.start((isOn) => this.#onLightChange(lightIndex, isOn), cancellationToken)
+
+            setTimeout(
+                () => this.#setLight(this.#getNextIndex(lightIndex), handler, cancellationToken),
+                light.duration)
+        }
+    }
+
+    #getNextIndex(index) {
+        return (index + 1) % this.#lights.length;
     }
 }
 

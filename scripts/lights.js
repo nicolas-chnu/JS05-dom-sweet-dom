@@ -1,4 +1,4 @@
-import {TrafficLights} from "./TrafficLight.js";
+import {Light, TrafficLights} from "./TrafficLight.js";
 
 const label = document.querySelector('.active-light');
 const switchLightBtn = document.querySelector('.switch-traffic-light-btn');
@@ -10,9 +10,6 @@ const timePerSecond = 500;
 const redTime = 5 * timePerSecond;
 const yellowTime = 3 * timePerSecond;
 const greenTime = 7 * timePerSecond;
-
-const lights = new TrafficLights(redTime, yellowTime, greenTime);
-const colorAttrValues = ['red', 'yellow', 'green', 'yellow']
 
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -44,14 +41,25 @@ function promptLightSpeed() {
     }
 }
 
-lights.onLightChange = (index, isOn) => {
+function onLightChange(index, isOn) {
+    const colorAttrValues = ['red', 'yellow', 'green', 'yellow']
+    const colorAttr = 'color'
     let color = colorAttrValues[index]
 
     label.innerText = capitalize(color);
-    isOn ? lightsElem.setAttribute('color', color) : lightsElem.setAttribute('color', '')
+    isOn
+        ? lightsElem.setAttribute(colorAttr, color)
+        : lightsElem.removeAttribute(colorAttr)
 }
 
 switchLightBtn.onclick = () => lights.switchToNextLight()
 setLightSpeedBtn.onclick = promptLightSpeed
+
+const lights = new TrafficLights(onLightChange);
+
+lights.addLight(new Light(redTime, 1))
+lights.addLight(new Light(yellowTime, 1))
+lights.addLight(new Light(greenTime, 1))
+lights.addLight(new Light(yellowTime, 3))
 
 lights.startLights()
