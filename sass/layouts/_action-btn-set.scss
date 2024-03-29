@@ -1,32 +1,32 @@
 @use '../base' as b;
-@use '../components' as comp;
-
-$gap: 17px;
+@use '../components/buttons';
 
 .action-btn-set {
+  $gap: 17px;
+
   display: flex;
   flex-direction: column;
   gap: $gap;
   padding: 0 70px;
-}
 
-.action-buttons {
-  $action-btn-side: 110px;
+  .action-buttons {
+    $action-btn-side: 110px;
 
-  display: flex;
-  flex-direction: row;
-  gap: $gap;
-  justify-content: space-between;
-  height: $action-btn-side;
+    display: flex;
+    flex-direction: row;
+    gap: $gap;
+    justify-content: space-between;
+    height: $action-btn-side;
 
-  button {
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-  }
+    button {
+      height: 100%;
+      width: 100%;
+      border-radius: 10px;
+    }
 
-  &.thin {
-    height: 80px;
+    &.thin {
+      height: 80px;
+    }
   }
 }
 
@@ -34,7 +34,7 @@ $gap: 17px;
   display: flex;
 
   a {
-    @extend button;
+    @extend .button-base;
     border-radius: 10px;
     text-align: center;
     font-size: 24px;

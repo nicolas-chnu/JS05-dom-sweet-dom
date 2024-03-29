@@ -91,7 +91,7 @@ $patron-h: 35px;
   }
 
   &[lamp-type='basic'] &__bulb {
-    $basic-light-color: yellow;
+    $basic-light-color: hsl(60, 100%, 50%);
 
     @extend %basic-bulb-shape;
     border: solid 2px $wire-color;
@@ -104,7 +104,7 @@ $patron-h: 35px;
   }
 
   &[lamp-type='eco'] &__bulb {
-    $eco-light-color: antiquewhite;
+    $eco-light-color: hsl(34, 78%, 91%);
 
     @extend %eco-bulb-shape;
     border: solid 2px $wire-color;
@@ -117,7 +117,7 @@ $patron-h: 35px;
   }
 
   &[lamp-type='led'] &__bulb {
-    $led-light-color: #c1ebff;
+    $led-light-color: hsl(199, 100%, 88%);
 
     @extend %led-bulb-shape;
     border: solid 2px $wire-color;
