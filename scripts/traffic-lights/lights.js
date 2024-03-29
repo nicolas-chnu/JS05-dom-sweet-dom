@@ -1,4 +1,4 @@
-import {Light, TrafficLights} from "./TrafficLight.js";
+import {Light, TrafficLights} from "./TrafficLights.js";
 
 const label = document.querySelector('.active-light');
 const switchLightBtn = document.querySelector('.switch-traffic-light-btn');

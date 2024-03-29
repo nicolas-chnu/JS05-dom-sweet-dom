@@ -1,4 +1,4 @@
-import {animatePro, bowShooting, bounce} from './animation.js'
+import {animatePro, bowShooting, bounce} from '../animation.js'
 
 const duration = 1000;
 const animationPathLen = 400;

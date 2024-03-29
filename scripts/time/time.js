@@ -1,13 +1,11 @@
-import {animatePro, bowShooting} from "./animation.js";
+import {animatePro, bowShooting} from "../animation.js";
 
 const timerSound = new Audio('../media/success-sound.mp3')
 
 const clockValue = document.querySelector('.clock__value')
 const clockPulse = document.querySelector('.clock__pulse')
-
 const timerValue = document.querySelector('.timer__value');
 const datePicker = document.querySelector('.timer__date-selector');
-
 const calendarContent = document.querySelector('.calendar__content');
 const monthSelector = document.querySelector('.calendar__month-selector');
 
