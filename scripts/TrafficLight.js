@@ -14,8 +14,7 @@ export class TrafficLights {
 
     startLights() {
         this.#cancellationToken = new CancellationToken();
-
-        this.#setLight(this.#current, this.#onLightChange, this.#cancellationToken)
+        this.#setLight(this.#current, this.#cancellationToken)
     }
 
     switchToNextLight() {
@@ -24,8 +23,9 @@ export class TrafficLights {
         for (let light of this.#lights) {
             light.turnOff()
         }
+
         this.#onLightChange(this.#current, false)
-        this.#current = this.#getNextIndex(this.#current);
+        this.#current = this.#getNextIndex();
 
         this.startLights()
     }
@@ -34,21 +34,23 @@ export class TrafficLights {
         this.#lights[index].duration = millis;
     }
 
-    #setLight(lightIndex, handler, cancellationToken) {
-        this.#current = lightIndex;
-
-        if (!cancellationToken.isCancelled) {
-            let light = this.#lights[lightIndex];
-            light.start((isOn) => this.#onLightChange(lightIndex, isOn), cancellationToken)
-
-            setTimeout(
-                () => this.#setLight(this.#getNextIndex(lightIndex), handler, cancellationToken),
-                light.duration)
+    #setLight(lightIndex, cancellationToken) {
+        if (cancellationToken.isCancelled) {
+            return
         }
+
+        this.#current = lightIndex;
+        let light = this.#lights[lightIndex];
+
+        light.start((isOn) => this.#onLightChange(lightIndex, isOn), cancellationToken)
+
+        setTimeout(
+            () => this.#setLight(this.#getNextIndex(), cancellationToken),
+            light.duration)
     }
 
-    #getNextIndex(index) {
-        return (index + 1) % this.#lights.length;
+    #getNextIndex() {
+        return (this.#current + 1) % this.#lights.length;
     }
 }
 
