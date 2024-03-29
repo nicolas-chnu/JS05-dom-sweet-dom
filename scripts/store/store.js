@@ -1,147 +1,15 @@
 import {ProductStore} from "./ProductStore.js";
-
-const onFirstProductSearch = (product) => alert('It\'s your first time searching for ' + product);
-const store = new ProductStore(onFirstProductSearch);
+import * as dh from "./dom-helpers.js";
 
 const productListElem = document.querySelector('.product-list')
-const searchStringListElem = document.querySelector('.search-string-list')
-const orderListElem = document.querySelector('.order-list-container')
-const searchBtn = document.getElementById('search')
-const createBtn = document.getElementById('create')
+const statsListElem = document.querySelector('.stats-list')
+const orderListElem = document.querySelector('.order-list')
+const searchBtn = document.querySelector('.search-product-btn')
+const createBtn = document.querySelector('.create-product-btn')
+const searchBarElem = document.querySelector('#product-search__text')
 
-const productElems = new WeakMap();
-const searchStringElems = new WeakMap();
-const orderElems = new WeakMap();
-
-function createProduct() {
-    let name = prompt('Enter product name')
-    let price = promptNumber('Enter product price')
-
-    try {
-        let product = store.createProduct(name, price)
-
-        const li = document.createElement('li');
-        const liName = document.createElement('span');
-        const liPrice = document.createElement('span');
-        const liUpdateBtn = document.createElement('button');
-        const liAddBtn = document.createElement('button');
-        const liRemoveBtn = document.createElement('button');
-
-        liName.innerText = product.name
-        liPrice.innerText = product.price
-        liUpdateBtn.innerText = 'Update'
-        liAddBtn.innerText = 'Add'
-        liRemoveBtn.innerText = 'Remove'
-
-        liUpdateBtn.onclick = () => updateProduct(product)
-        liAddBtn.onclick = () => addProduct(product)
-        liRemoveBtn.onclick = () => removeProduct(product)
-
-        li.appendChild(liName)
-        li.appendChild(liPrice)
-        li.appendChild(liUpdateBtn)
-        li.appendChild(liAddBtn)
-        li.appendChild(liRemoveBtn)
-        productListElem.appendChild(li)
-
-        productElems.set(product, li)
-        alert('Product created successfully!')
-    } catch (err) {
-        console.log(err)
-        alert('Failed to create a product')
-    }
-}
-
-function updateProduct(product) {
-    let price = promptNumber('Enter new product price')
-
-    try {
-        store.updateProductPrice(product.name, price)
-
-        let prodElem = productElems.get(product)
-        prodElem.children[1].innerText = price;
-
-        alert('Product updated successfully!')
-    } catch (err) {
-        console.log(err)
-        alert('Failed to update a product')
-    }
-}
-
-function addProduct(product) {
-    let quantity = promptNumber('How many to add?')
-
-    try {
-        let order = store.addProduct(product.name, quantity)
-
-        const li = document.createElement('li');
-        const liName = document.createElement('span');
-        const liDir = document.createElement('span');
-        const liQuantity = document.createElement('span');
-
-        liName.innerText = order.productName;
-        liDir.innerText = order.direction;
-        liQuantity.innerText = order.quantity;
-
-        li.appendChild(liName)
-        li.appendChild(liDir)
-        li.appendChild(liQuantity)
-        orderListElem.appendChild(li)
-
-        alert('Order added successfully!')
-    } catch (err) {
-        console.log(err)
-        alert('Failed to create an order')
-    }
-}
-
-function removeProduct(product) {
-    let quantity = promptNumber('How many to remove?')
-
-    try {
-        let order = store.removeProduct(product.name, quantity)
-
-        const li = document.createElement('li');
-        const liName = document.createElement('span');
-        const liDir = document.createElement('span');
-        const liQuantity = document.createElement('span');
-
-        liName.innerText = order.productName;
-        liDir.innerText = order.direction;
-        liQuantity.innerText = order.quantity;
-
-        li.appendChild(liName)
-        li.appendChild(liDir)
-        li.appendChild(liQuantity)
-        orderListElem.appendChild(li)
-
-        alert('Order added successfully!')
-    } catch (err) {
-        console.log(err)
-        alert('Failed to create an order')
-    }
-}
-
-function searchForProduct() {
-    let name = prompt('Enter product name')
-
-    try {
-        let product = store.searchForProduct(name)
-        alert(product)
-    } catch (err) {
-        console.log(err)
-        alert('Product not found')
-    } finally {
-        searchStringListElem.innerHTML = ''
-
-        for (let str of store.searchStrings) {
-            const li = document.createElement('li');
-            li.innerText = str;
-
-            searchStringListElem.appendChild(li)
-        }
-    }
-}
+const productMap = new WeakMap();
+const statsMap = new Map();
 
 function promptNumber(message, validateCallback = () => true) {
     let num = parseInt(prompt(message))
@@ -151,6 +19,108 @@ function promptNumber(message, validateCallback = () => true) {
     return num
 }
 
-searchBtn.onclick = searchForProduct;
-createBtn.onclick = createProduct;
+const store = new ProductStore((productName) => {
+    if (!statsMap.has(productName)) {
+        alert(`It's your first time searching for ${productName}!`)
 
+        let statElem = dh.createStatElem()
+        statElem.innerText = productName
+
+        statsListElem.appendChild(statElem)
+        statsMap.set(productName, statElem)
+    }
+});
+
+function fillProductElem(productElem, product) {
+    dh.fillUpProductElem(
+        productElem,
+        product,
+        editProduct,
+        addProduct,
+        removeProduct)
+}
+
+function searchForProduct() {
+    let searchInput = searchBarElem.value
+
+    try {
+        let product = store.searchForProduct(searchInput)
+        alert(`Name: ${product.name}\nPrice: $${product.price}\nQuantity: ${product.quantity}`)
+    } catch (err) {
+        alert(err.message)
+    }
+}
+
+function createProduct() {
+    let name = prompt('Enter product name')
+    let price = promptNumber('Enter product price')
+
+    try {
+        let product = store.createProduct(name, price)
+        let productElem = dh.createProductElem()
+
+        fillProductElem(productElem, product)
+
+        productListElem.appendChild(productElem)
+        productMap.set(productElem, product)
+
+        alert('Product created successfully!')
+    } catch (err) {
+        alert(err.message)
+    }
+}
+
+function editProduct(productElem) {
+    let price = promptNumber('Enter new product price')
+    let product = productMap.get(productElem)
+
+    try {
+        store.updateProductPrice(product.name, price)
+        fillProductElem(productElem, product)
+
+        alert('Product updated successfully!')
+    } catch (err) {
+        alert(err.message)
+    }
+}
+
+function addProduct(productElem) {
+    let quantity = promptNumber('How many to add?')
+    let product = productMap.get(productElem)
+
+    try {
+        let order = store.addProduct(product.name, quantity)
+        let orderElem = dh.createOrderElem()
+
+        dh.fillUpOrderElement(orderElem, order)
+        orderListElem.appendChild(orderElem)
+
+        fillProductElem(productElem, product)     // update product quantity
+
+        alert('Buy order created successfully!')
+    } catch (err) {
+        alert(err.message)
+    }
+}
+
+function removeProduct(productElem) {
+    let quantity = promptNumber('How many to add?')
+    let product = productMap.get(productElem)
+
+    try {
+        let order = store.removeProduct(product.name, quantity)
+        let orderElem = dh.createOrderElem()
+
+        dh.fillUpOrderElement(orderElem, order)
+        orderListElem.appendChild(orderElem)
+
+        fillProductElem(productElem, product)     // update product quantity
+
+        alert('Buy order created successfully!')
+    } catch (err) {
+        alert(err.message)
+    }
+}
+
+createBtn.onclick = createProduct;
+searchBtn.onclick = searchForProduct;
