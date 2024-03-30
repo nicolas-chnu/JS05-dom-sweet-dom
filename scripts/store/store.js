@@ -4,19 +4,29 @@ import * as dh from "./dom-helpers.js";
 const productListElem = document.querySelector('.product-list')
 const statsListElem = document.querySelector('.stats-list')
 const orderListElem = document.querySelector('.order-list')
-const searchBtn = document.querySelector('.search-product-btn')
+const searchBtn = document.querySelector('.search-product__btn')
 const createBtn = document.querySelector('.create-product-btn')
-const searchBarElem = document.querySelector('#product-search__text')
+const searchBarElem = document.querySelector('#search-product__text')
 
 const productMap = new WeakMap();
 const statsMap = new Map();
 
-function promptNumber(message, validateCallback = () => true) {
-    let num = parseInt(prompt(message))
-    while (isNaN(num) || !validateCallback(num)) {
-        num = parseInt(prompt('Invalid input. Try again\n' + message))
-    }
-    return num
+function promptNumber(message, valueOnCancel = NaN, validateCallback = () => true) {
+    let result = NaN;
+    let errorMessage = '';
+
+    do {
+        const input = prompt(errorMessage + message);
+
+        if (input === null) {
+            return valueOnCancel;
+        }
+
+        result = parseInt(input);
+        errorMessage = 'Invalid input. Please, try again\n';
+    } while (Number.isNaN(result) || !validateCallback(result));
+
+    return result;
 }
 
 const store = new ProductStore((productName) => {
@@ -53,7 +63,10 @@ function searchForProduct() {
 
 function createProduct() {
     let name = prompt('Enter product name')
+    if (name === null) return   // if cancelled
+
     let price = promptNumber('Enter product price')
+    if (isNaN(price)) return    // if cancelled
 
     try {
         let product = store.createProduct(name, price)
@@ -86,6 +99,8 @@ function editProduct(productElem) {
 
 function addProduct(productElem) {
     let quantity = promptNumber('How many to add?')
+    if (isNaN(quantity)) return
+
     let product = productMap.get(productElem)
 
     try {
@@ -105,6 +120,8 @@ function addProduct(productElem) {
 
 function removeProduct(productElem) {
     let quantity = promptNumber('How many to add?')
+    if (isNaN(quantity)) return
+
     let product = productMap.get(productElem)
 
     try {
