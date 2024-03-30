@@ -76,3 +76,8 @@ button,
   @extend %button-with-bg-img;
   background-image: url("/media/add.png");
 }
+
+.home-icon {
+  @extend %button-with-bg-img;
+  background-image: url("/media/home.png");
+}

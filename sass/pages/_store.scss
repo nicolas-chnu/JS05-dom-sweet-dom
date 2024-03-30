@@ -103,26 +103,32 @@
   }
 }
 
-.search-product-btn {
-  background-size: auto 50%;
+.toolbar-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
 }
 
-.search-product-btn,
+.go-home-btn,
+.search-product__btn,
 .create-product-btn,
-.product-actions button{
+.product-actions button {
+  display: block;
   width: 30px;
   height: 30px;
   background-color: a.$white;
   border-radius: 10px;
   opacity: .6;
   transition: opacity .3s;
+
+  &:hover {
+    background-color: a.$white;
+    opacity: 1;
+  }
 }
 
-.search-product-btn:hover,
-.create-product-btn:hover,
-.product-actions button:hover{
-  background-color: a.$white;
-  opacity: 1;
+.search-product-btn {
+  background-size: auto 50%;
 }
 
 .order-section {

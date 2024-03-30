@@ -26,7 +26,7 @@ a {
   color: hsl(0, 0%, 80%);
 }
 
-.add-icon, .search-icon, .outbox-icon, .order__direction[direction=out], .inbox-icon, .order__direction[direction=in], .edit-icon, .duration-icon, .brightness-icon, .power-switch-icon, .next-icon, .rotate-icon {
+.home-icon, .add-icon, .search-icon, .outbox-icon, .order__direction[direction=out], .inbox-icon, .order__direction[direction=in], .edit-icon, .duration-icon, .brightness-icon, .power-switch-icon, .next-icon, .rotate-icon {
   background-position: center;
   background-size: auto 70%;
   background-repeat: no-repeat;
@@ -97,6 +97,10 @@ button:disabled, button[disabled],
 
 .add-icon {
   background-image: url("/media/add.png");
+}
+
+.home-icon {
+  background-image: url("/media/home.png");
 }
 
 .lamp[lamp-type=basic] .lamp__bulb.is-on + .lamp__light, .lamp[lamp-type=basic] .lamp__bulb {
@@ -534,13 +538,17 @@ input[type=text] {
   opacity: 1;
 }
 
-.search-product-btn {
-  background-size: auto 50%;
+.toolbar-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
 }
 
-.search-product-btn,
+.go-home-btn,
+.search-product__btn,
 .create-product-btn,
 .product-actions button {
+  display: block;
   width: 30px;
   height: 30px;
   background-color: hsl(0, 0%, 80%);
@@ -548,12 +556,16 @@ input[type=text] {
   opacity: 0.6;
   transition: opacity 0.3s;
 }
-
-.search-product-btn:hover,
+.go-home-btn:hover,
+.search-product__btn:hover,
 .create-product-btn:hover,
 .product-actions button:hover {
   background-color: hsl(0, 0%, 80%);
   opacity: 1;
+}
+
+.search-product-btn {
+  background-size: auto 50%;
 }
 
 .order-section {
