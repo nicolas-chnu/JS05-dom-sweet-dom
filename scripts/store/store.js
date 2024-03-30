@@ -9,7 +9,6 @@ const createBtn = document.querySelector('.create-product-btn')
 const searchBarElem = document.querySelector('#search-product__text')
 
 const productMap = new WeakMap();
-const statsMap = new Map();
 
 function promptNumber(message, valueOnCancel = NaN, validateCallback = () => true) {
     let result = NaN;
@@ -30,14 +29,13 @@ function promptNumber(message, valueOnCancel = NaN, validateCallback = () => tru
 }
 
 const store = new ProductStore((productName) => {
-    if (!statsMap.has(productName)) {
+    if (!store.stats.has(productName)) {
         alert(`It's your first time searching for ${productName}!`)
 
         let statElem = dh.createStatElem()
         statElem.innerText = productName
 
         statsListElem.appendChild(statElem)
-        statsMap.set(productName, statElem)
     }
 });
 

@@ -2,8 +2,8 @@ export class ProductStore {
     products = new Map();
     orders = [];
     productStatistics = new WeakMap();
-    searchStrings = new Set();
-    #onFirstProductSearch = (name) => {};
+    stats = new Set();
+    #onFirstProductSearch;
 
     constructor(onFirstProductSearch) {
         this.#onFirstProductSearch = onFirstProductSearch;
@@ -14,8 +14,8 @@ export class ProductStore {
             throw new Error('Invalid search')
         }
 
-        if (!this.searchStrings.has(searchInput)) {
-            this.searchStrings.add(searchInput);
+        if (!this.stats.has(searchInput)) {
+            this.stats.add(searchInput);
             this.#onFirstProductSearch(searchInput)
         }
         let product = this.#getProduct(searchInput)
