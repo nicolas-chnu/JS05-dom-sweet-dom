@@ -29,14 +29,12 @@ function promptNumber(message, valueOnCancel = NaN, validateCallback = () => tru
 }
 
 const store = new ProductStore((productName) => {
-    if (!store.stats.has(productName)) {
-        alert(`It's your first time searching for ${productName}!`)
+    alert(`It's your first time searching for ${productName}!`)
 
-        let statElem = dh.createStatElem()
-        statElem.innerText = productName
+    let statElem = dh.createStatElem()
+    statElem.innerText = productName
 
-        statsListElem.appendChild(statElem)
-    }
+    statsListElem.appendChild(statElem)
 });
 
 function fillProductElem(productElem, product) {
