@@ -109,6 +109,23 @@
   gap: 7px;
 }
 
+.product-list,
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .product,
+  .order {
+    $text-color: a.$white;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: $text-color;
+  }
+}
+
 .go-home-btn,
 .search-product__btn,
 .create-product-btn,

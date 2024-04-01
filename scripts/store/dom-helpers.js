@@ -7,14 +7,14 @@ export function createStatElem() {
 
 export function createProductElem() {
     let elem = document.createElement('li')
-    elem.classList.add('item', 'product')
+    elem.classList.add('product')
 
     return elem
 }
 
 export function createOrderElem() {
     let elem = document.createElement('li')
-    elem.classList.add('item', 'order')
+    elem.classList.add('order')
 
     return elem
 }
