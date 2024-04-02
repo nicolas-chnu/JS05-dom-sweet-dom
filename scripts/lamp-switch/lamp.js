@@ -1,15 +1,15 @@
 import {animatePro, bowShooting, bounce} from '../animation.js'
 
-const duration = 1000;
-const animationPathLen = 400;
-const initialLampTop = -100;
+const ANIMATION_DURATION = 1000;
+const ANIMATION_PATH_LEN = 400;
+const INITIAL_LAMP_POS = -100;
 
-const toggleLampTypeBtn = document.querySelector('.toggle-lamp-type-btn');
-const toggleLampPowerBtn = document.querySelector('.toggle-lamp-power-btn');
+const toggleLampTypeBtn = document.querySelector('.js-toggle-lamp-type-btn');
+const toggleLampPowerBtn = document.querySelector('.js-toggle-lamp-power-btn');
+const setLampBrightnessBtn = document.querySelector('.js-set-lamp-brightness-btn');
 
-const setLampBrightnessBtn = document.querySelector('.set-lamp-brightness-btn');
-const bulbElem = document.querySelector('.lamp__bulb');
-const lampElem = document.querySelector('.lamp');
+const bulbElem = document.querySelector('.js-lamp__bulb');
+const lampElem = bulbElem.parentElement;
 
 let timeout;
 let currentLampType = 'basic'
@@ -17,15 +17,15 @@ let currentLampType = 'basic'
 function animateLampUp() {
     animatePro(
         bowShooting,
-        (progress) => lampElem.style.top = initialLampTop - progress * animationPathLen + 'px',
-        duration);
+        (progress) => lampElem.style.top = INITIAL_LAMP_POS - progress * ANIMATION_PATH_LEN + 'px',
+        ANIMATION_DURATION);
 }
 
 function animateLampDown() {
     animatePro(
         (timeFraction) => 1 - bounce(1 - timeFraction),     // bounce ease out
-        (progress) => lampElem.style.top = initialLampTop - animationPathLen + progress * animationPathLen + 'px',
-        duration);
+        (progress) => lampElem.style.top = INITIAL_LAMP_POS - ANIMATION_PATH_LEN + progress * ANIMATION_PATH_LEN + 'px',
+        ANIMATION_DURATION);
 }
 
 function updateSleepTimeout() {
@@ -57,23 +57,23 @@ function updateBrightness() {
     bulbElem.nextElementSibling.style.opacity = coercedBrightness.toString();
 }
 
-window.onmousemove = updateSleepTimeout;
-window.onmousedown = updateSleepTimeout;
-window.onkeydown = updateSleepTimeout;
-window.onwheel = updateSleepTimeout;
-
-window.onload = () => {
+window.addEventListener('mousemove', updateSleepTimeout)
+window.addEventListener('mousedown', updateSleepTimeout)
+window.addEventListener('keydown', updateSleepTimeout)
+window.addEventListener('wheel', updateSleepTimeout)
+window.addEventListener('DOMContentLoaded', () => {
     updateSetLampBrightnessBtn();
     setTimeout(animateLampDown, 500);
-}
+})
 
-toggleLampTypeBtn.onclick = () => {
+toggleLampPowerBtn.addEventListener('click', () => bulbElem.classList.toggle('is-on'))
+setLampBrightnessBtn.addEventListener('click', updateBrightness);
+
+toggleLampTypeBtn.addEventListener('click', () => {
     animateLampUp();
 
     setTimeout(() => {
         switchToNextLamp()
         animateLampDown();
-    }, duration + 200);
-}
-toggleLampPowerBtn.onclick = () => bulbElem.classList.toggle('is-on')
-setLampBrightnessBtn.onclick = updateBrightness;
+    }, ANIMATION_DURATION + 200);
+})
