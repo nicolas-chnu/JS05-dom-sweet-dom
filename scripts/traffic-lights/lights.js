@@ -1,15 +1,15 @@
 import {Light, TrafficLights} from "./TrafficLights.js";
 
-const label = document.querySelector('.active-light');
-const switchLightBtn = document.querySelector('.switch-traffic-light-btn');
-const setLightSpeedBtn = document.querySelector('.prompt-duration-btn');
+const TIME_PER_SECOND = 500;
+const RED_TIME = 5 * TIME_PER_SECOND;
+const YELLOW_TIME = 3 * TIME_PER_SECOND;
+const GREEN_TIME = 7 * TIME_PER_SECOND;
 
-const lightsElem = document.querySelector('.traffic-lights');
+const switchLightBtn = document.querySelector('.js-switch-traffic-light-btn');
+const setLightSpeedBtn = document.querySelector('.js-prompt-duration-btn');
 
-const timePerSecond = 500;
-const redTime = 5 * timePerSecond;
-const yellowTime = 3 * timePerSecond;
-const greenTime = 7 * timePerSecond;
+const activeLightLabel = document.querySelector('.js-active-light');
+const lightsElem = document.querySelector('.js-traffic-lights');
 
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -25,7 +25,7 @@ function promptLightSpeed() {
         return
     }
 
-    let time = +input.slice(2) * timePerSecond;
+    let time = +input.slice(2) * TIME_PER_SECOND;
 
     switch (input[0]) {
         case 'r':
@@ -46,20 +46,20 @@ function onLightChange(index, isOn) {
     const colorAttr = 'color'
     let color = colorAttrValues[index]
 
-    label.innerText = capitalize(color);
+    activeLightLabel.innerText = capitalize(color);
     isOn
         ? lightsElem.setAttribute(colorAttr, color)
         : lightsElem.removeAttribute(colorAttr)
 }
 
-switchLightBtn.onclick = () => lights.switchToNextLight()
-setLightSpeedBtn.onclick = promptLightSpeed
+switchLightBtn.addEventListener('click', () => lights.switchToNextLight())
+setLightSpeedBtn.addEventListener('click', promptLightSpeed)
 
 const lights = new TrafficLights(onLightChange);
 
-lights.addLight(new Light(redTime, 1))
-lights.addLight(new Light(yellowTime, 1))
-lights.addLight(new Light(greenTime, 1))
-lights.addLight(new Light(yellowTime, 3))
+lights.addLight(new Light(RED_TIME, 1))
+lights.addLight(new Light(YELLOW_TIME, 1))
+lights.addLight(new Light(GREEN_TIME, 1))
+lights.addLight(new Light(YELLOW_TIME, 3))
 
 lights.startLights()
