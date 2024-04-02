@@ -15,7 +15,7 @@
   color: a.$white;
 }
 
-.clock {
+.js-clock {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -46,7 +46,7 @@
   margin: 10px auto;
 }
 
-.timer {
+.js-timer {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -60,7 +60,7 @@
   }
 }
 
-.calendar {
+.js-calendar {
   @extend %border;
   display: flex;
   flex-direction: column;

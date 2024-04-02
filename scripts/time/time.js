@@ -2,12 +2,12 @@ import {animatePro, bowShooting} from "../animation.js";
 
 const timerSound = new Audio('../media/success-sound.mp3')
 
-const clockValue = document.querySelector('.clock__value')
-const clockPulse = document.querySelector('.clock__pulse')
-const timerValue = document.querySelector('.timer__value');
-const datePicker = document.querySelector('.timer__date-selector');
-const calendarContent = document.querySelector('.calendar__content');
-const monthSelector = document.querySelector('.calendar__month-selector');
+const clockValue = document.querySelector('.js-clock__value')
+const clockPulse = document.querySelector('.js-clock__pulse')
+const timerValue = document.querySelector('.js-timer__value');
+const datePicker = document.querySelector('.js-timer__date-selector');
+const calendarContent = document.querySelector('.js-calendar__content');
+const monthSelector = document.querySelector('.js-calendar__month-selector');
 
 function updateClock() {
     const now = new Date();
@@ -138,8 +138,8 @@ function getTimeDeltaStr(selectedDate) {
     return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds are left`;
 }
 
-monthSelector.onchange = renderCalendar;
-datePicker.onchange = setTimer;
+monthSelector.addEventListener('change', renderCalendar);
+datePicker.addEventListener('change', setTimer);
 
 setInterval(updateClock, 1000);
 setInterval(animateClockPulse, 1000);
