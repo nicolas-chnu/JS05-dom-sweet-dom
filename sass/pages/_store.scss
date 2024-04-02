@@ -18,7 +18,7 @@
     height: 30px;
     position:relative;
 
-    .search-product {
+    .js-search-product {
       display: flex;
       flex-direction: row;
       gap: 7px;
@@ -41,7 +41,7 @@
     vertical-align: center;
   }
 
-  .stats-list {
+  .js-stats-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -59,13 +59,13 @@
   }
 }
 
-.product {
+.js-product {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 5px 0 5px 5px;
 
-  .product-info {
+  .js-product-info {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -88,7 +88,7 @@
     }
   }
 
-  .product-actions {
+  .js-product-actions {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -98,7 +98,7 @@
     transition: opacity .3s;
   }
 
-  &:hover .product-actions {
+  &:hover .js-product-actions {
     opacity: 1;
   }
 }
@@ -109,14 +109,14 @@
   gap: 7px;
 }
 
-.product-list,
-.order-list {
+.js-product-list,
+.js-order-list {
   display: flex;
   flex-direction: column;
   gap: 5px;
 
-  .product,
-  .order {
+  .js-product,
+  .js-order {
     $text-color: a.$white;
 
     display: flex;
@@ -127,9 +127,9 @@
 }
 
 .go-home-btn,
-.search-product__btn,
-.create-product-btn,
-.product-actions button {
+.js-search-product__btn,
+.js-create-product-btn,
+.js-product-actions button {
   display: block;
   width: 30px;
   height: 30px;
@@ -144,7 +144,7 @@
   }
 }
 
-.search-product__btn,
+.js-search-product__btn,
 .go-home-btn {
   background-size: auto 50%;
 }
@@ -162,7 +162,7 @@
   }
 }
 
-.order {
+.js-order {
   display: flex;
   flex-direction: row;
   align-items: center;

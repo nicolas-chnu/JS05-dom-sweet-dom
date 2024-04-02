@@ -10,7 +10,7 @@ export class ProductStore {
     }
 
     searchForProduct(searchInput) {
-        if (searchInput === null || searchInput.match(/^ *$/)) {
+        if (!searchInput || searchInput.match(/^ *$/)) {
             throw new Error('Invalid search')
         }
 

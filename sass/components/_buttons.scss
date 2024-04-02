@@ -16,6 +16,7 @@ button,
   border: none;
   opacity: 1;
   color: a.$gray-light;
+  cursor: pointer;
 
   &:hover {
     background-color: $pressed-color;

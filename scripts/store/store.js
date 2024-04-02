@@ -1,14 +1,108 @@
 import {ProductStore} from "./ProductStore.js";
-import * as dh from "./dom-helpers.js";
 
-const productListElem = document.querySelector('.product-list')
-const statsListElem = document.querySelector('.stats-list')
-const orderListElem = document.querySelector('.order-list')
-const searchBtn = document.querySelector('.search-product__btn')
-const createBtn = document.querySelector('.create-product-btn')
-const searchBarElem = document.querySelector('#search-product__text')
+const productListElem = document.querySelector('.js-product-list')
+const statsListElem = document.querySelector('.js-stats-list')
+const orderListElem = document.querySelector('.js-order-list')
+const searchBtn = document.querySelector('.js-search-product__btn')
+const createBtn = document.querySelector('.js-create-product-btn')
+const searchBarElem = document.querySelector('#js-search-product__text')
 
+// HTML element, Product
 const productMap = new WeakMap();
+
+class ProductMenu {
+    #container
+    constructor(elem) {
+        this.#container = elem
+
+        elem.addEventListener('click', (event) => {
+            const button = event.target
+            const action = button.dataset.action
+
+            if (action === undefined) return
+
+            const productElem = button.parentElement.parentElement
+            this[action](productElem)
+        })
+    }
+    edit(productElem) {
+        let price = promptNumber('Enter new product price')
+        let product = productMap.get(productElem)
+
+        try {
+            store.updateProductPrice(product.name, price)
+            renderProduct(productElem, product)
+
+            alert('Product updated successfully!')
+        } catch (err) {
+            alert(err.message)
+        }
+    }
+
+    add(productElem) {
+        let quantity = promptNumber('How many to add?')
+        if (isNaN(quantity)) return
+
+        let product = productMap.get(productElem)
+
+        try {
+            let order = store.addProduct(product.name, quantity)
+            let orderElem = appendNewOrderElem()
+
+            renderOrder(orderElem, order)
+            renderProduct(productElem, product)     // update product quantity
+
+            alert('Buy order created successfully!')
+        } catch (err) {
+            alert(err.message)
+        }
+    }
+
+    remove(productElem) {
+        let quantity = promptNumber('How many to add?')
+        if (isNaN(quantity)) return
+        let product = productMap.get(productElem)
+
+        try {
+            let order = store.removeProduct(product.name, quantity)
+            let orderElem = appendNewOrderElem()
+
+            renderOrder(orderElem, order)
+            renderProduct(productElem, product)     // update product quantity
+
+            alert('Buy order created successfully!')
+        } catch (err) {
+            alert(err.message)
+        }
+    }
+}
+
+export function appendNewStatElem() {
+    let elem = document.createElement('li')
+
+    elem.classList.add('js-stats-list__item')
+    statsListElem.appendChild(elem)
+
+    return elem
+}
+
+export function appendNewProductElem() {
+    let elem = document.createElement('li')
+
+    elem.classList.add('js-product')
+    productListElem.appendChild(elem)
+
+    return elem
+}
+
+export function appendNewOrderElem() {
+    let elem = document.createElement('li')
+
+    elem.classList.add('js-order')
+    orderListElem.appendChild(elem)
+
+    return elem
+}
 
 function promptNumber(message, valueOnCancel = NaN, validateCallback = () => true) {
     let result = NaN;
@@ -28,22 +122,26 @@ function promptNumber(message, valueOnCancel = NaN, validateCallback = () => tru
     return result;
 }
 
-const store = new ProductStore((productName) => {
-    alert(`It's your first time searching for ${productName}!`)
+function renderProduct(productElem, product) {
+    productElem.innerHTML = `<div class="js-product-info">
+            <span class="js-product-info__name">${product.name}</span>
+            <span class="js-product-info__price">$${product.price}</span>
+            <span class="js-product-info__quantity">${product.quantity} left</span>
+        </div>
+        <div class="js-product-actions">
+            <button data-action="edit" class="js-edit-product-btn edit-icon"></button>
+            <button data-action="add" class="js-add-product-btn inbox-icon"></button>
+            <button data-action="remove" class="js-remove-product-btn outbox-icon"></button>
+        </div>`
+}
 
-    let statElem = dh.createStatElem()
-    statElem.innerText = productName
+function renderOrder(orderElem, order) {
+    const orderDate = `${order.date.getHours()}:${order.date.getMinutes().toString().padStart(2, '0')}`
 
-    statsListElem.appendChild(statElem)
-});
-
-function fillProductElem(productElem, product) {
-    dh.fillUpProductElem(
-        productElem,
-        product,
-        editProduct,
-        addProduct,
-        removeProduct)
+    orderElem.innerHTML = `<span class="js-order__time">${orderDate}</span>
+        <span class="js-order__name">${order.productName}</span>
+        <span class="js-order__direction" direction="${order.isSell ? 'out' : 'in'}"></span>
+        <span class="js-order__quantity">${order.quantity}</span>`
 }
 
 function searchForProduct() {
@@ -66,11 +164,9 @@ function createProduct() {
 
     try {
         let product = store.createProduct(name, price)
-        let productElem = dh.createProductElem()
+        let productElem = appendNewProductElem()
 
-        fillProductElem(productElem, product)
-
-        productListElem.appendChild(productElem)
+        renderProduct(productElem, product)
         productMap.set(productElem, product)
 
         alert('Product created successfully!')
@@ -79,61 +175,14 @@ function createProduct() {
     }
 }
 
-function editProduct(productElem) {
-    let price = promptNumber('Enter new product price')
-    let product = productMap.get(productElem)
+const store = new ProductStore((productName) => {
+    alert(`It's your first time searching for ${productName}!`)
 
-    try {
-        store.updateProductPrice(product.name, price)
-        fillProductElem(productElem, product)
+    let statElem = appendNewStatElem()
+    statElem.innerText = productName
+});
 
-        alert('Product updated successfully!')
-    } catch (err) {
-        alert(err.message)
-    }
-}
+const menu = new ProductMenu(productListElem)
 
-function addProduct(productElem) {
-    let quantity = promptNumber('How many to add?')
-    if (isNaN(quantity)) return
-
-    let product = productMap.get(productElem)
-
-    try {
-        let order = store.addProduct(product.name, quantity)
-        let orderElem = dh.createOrderElem()
-
-        dh.fillUpOrderElement(orderElem, order)
-        orderListElem.appendChild(orderElem)
-
-        fillProductElem(productElem, product)     // update product quantity
-
-        alert('Buy order created successfully!')
-    } catch (err) {
-        alert(err.message)
-    }
-}
-
-function removeProduct(productElem) {
-    let quantity = promptNumber('How many to add?')
-    if (isNaN(quantity)) return
-
-    let product = productMap.get(productElem)
-
-    try {
-        let order = store.removeProduct(product.name, quantity)
-        let orderElem = dh.createOrderElem()
-
-        dh.fillUpOrderElement(orderElem, order)
-        orderListElem.appendChild(orderElem)
-
-        fillProductElem(productElem, product)     // update product quantity
-
-        alert('Buy order created successfully!')
-    } catch (err) {
-        alert(err.message)
-    }
-}
-
-createBtn.onclick = createProduct;
-searchBtn.onclick = searchForProduct;
+createBtn.addEventListener('click', createProduct)
+searchBtn.addEventListener('click', searchForProduct)
