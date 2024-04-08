@@ -1,6 +1,57 @@
 @use '../abstracts' as a;
 
-.active-light {
+.traffic-lights-container {
+  position: relative;
+}
+
+.js-traffic-lights {
+  $tl-width: 100px;
+  $tl-height: 260px;
+  $wire-color: a.$gray-light;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: calc(50% - #{$tl-height} / 2);
+  left: calc(50% - #{$tl-width} / 2);
+  height: $tl-height;
+  width: $tl-width;
+  border: solid 2px $wire-color;
+  border-radius: 10px;
+
+  %light-circle {
+    $side: $tl-width - 2 * 15px;
+
+    width: $side;
+    height: $side;
+    border: solid 2px $wire-color;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.5s;
+  }
+
+  &__red,
+  &__yellow,
+  &__green {
+    @extend %light-circle;
+  }
+
+  &[color='red'] &__red {
+    background-color: hsl(7, 90%, 50%);
+  }
+
+  &[color='yellow'] &__yellow {
+    background-color: hsl(47, 90%, 50%);
+  }
+
+  &[color='green'] &__green {
+    background-color: hsl(100, 90%, 46%);
+  }
+}
+
+.js-active-light {
   display: block;
   position: relative;
   padding: 30px;

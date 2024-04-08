@@ -104,139 +104,6 @@ button:disabled, button[disabled],
   background-image: url("/media/home.png");
 }
 
-.js-lamp[lamp-type=basic] .js-lamp__bulb.is-on + .js-lamp__light, .js-lamp[lamp-type=basic] .js-lamp__bulb {
-  display: block;
-  position: absolute;
-  z-index: 100;
-  top: 281px;
-  left: calc(50% - 35px);
-  height: 70px;
-  width: 70px;
-  background-color: hsl(0, 0%, 13%);
-  border-radius: 50%;
-}
-
-.js-lamp[lamp-type=eco] .js-lamp__bulb.is-on + .js-lamp__light, .js-lamp[lamp-type=eco] .js-lamp__bulb {
-  display: block;
-  position: absolute;
-  z-index: 100;
-  top: 285px;
-  left: calc(50% - 15px);
-  height: 40px;
-  width: 30px;
-  background-color: hsl(0, 0%, 13%);
-  border-radius: 0 0 10px 10px;
-}
-
-.js-lamp[lamp-type=led] .js-lamp__bulb.is-on + .js-lamp__light, .js-lamp[lamp-type=led] .js-lamp__bulb {
-  display: block;
-  position: absolute;
-  z-index: 100;
-  top: 281px;
-  left: calc(50% - 25px);
-  height: 50px;
-  width: 50px;
-  background-color: hsl(0, 0%, 13%);
-  border-radius: 50%;
-}
-
-.js-lamp {
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: -500px;
-  left: 0;
-}
-.js-lamp__wire {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: calc(50% - 1px);
-  height: 250px;
-  width: 2px;
-  background-color: hsl(0, 0%, 39%);
-}
-.js-lamp__patron {
-  display: block;
-  position: absolute;
-  top: 250px;
-  left: calc(50% - 15px);
-  height: 35px;
-  width: 30px;
-  border: solid 2px;
-  background-color: hsl(0, 0%, 39%);
-  border-color: hsl(0, 0%, 39%) hsl(0, 0%, 39%) transparent hsl(0, 0%, 39%);
-  border-radius: 25px 25px 0 0;
-}
-.js-lamp[lamp-type=basic] .js-lamp__bulb {
-  border: solid 2px hsl(0, 0%, 39%);
-}
-.js-lamp[lamp-type=basic] .js-lamp__bulb.is-on + .js-lamp__light {
-  border-color: hsl(60, 100%, 50%);
-  background-color: hsl(60, 100%, 50%);
-  box-shadow: 0 0 50px hsl(60, 100%, 50%), 0 0 100px hsl(60, 100%, 50%), 0 0 150px hsl(60, 100%, 50%), 0 0 200px hsl(60, 100%, 50%), 0 0 250px hsl(60, 100%, 50%), 0 0 300px hsl(60, 100%, 50%), 0 0 350px;
-  opacity: 1;
-}
-.js-lamp[lamp-type=eco] .js-lamp__bulb {
-  border: solid 2px hsl(0, 0%, 39%);
-}
-.js-lamp[lamp-type=eco] .js-lamp__bulb.is-on + .js-lamp__light {
-  border-color: hsl(34, 78%, 91%);
-  background-color: hsl(34, 78%, 91%);
-  box-shadow: 0 0 50px hsl(34, 78%, 91%), 0 0 100px hsl(34, 78%, 91%), 0 0 150px hsl(34, 78%, 91%), 0 0 200px hsl(34, 78%, 91%), 0 0 250px hsl(34, 78%, 91%), 0 0 300px hsl(34, 78%, 91%), 0 0 350px;
-  opacity: 1;
-}
-.js-lamp[lamp-type=led] .js-lamp__bulb {
-  border: solid 2px hsl(0, 0%, 39%);
-}
-.js-lamp[lamp-type=led] .js-lamp__bulb.is-on + .js-lamp__light {
-  border-color: hsl(199, 100%, 88%);
-  background-color: hsl(199, 100%, 88%);
-  box-shadow: 0 0 50px hsl(199, 100%, 88%), 0 0 100px hsl(199, 100%, 88%), 0 0 150px hsl(199, 100%, 88%), 0 0 200px hsl(199, 100%, 88%), 0 0 250px hsl(199, 100%, 88%), 0 0 300px hsl(199, 100%, 88%), 0 0 350px;
-  opacity: 1;
-}
-.js-lamp__light {
-  opacity: 1;
-  border: none;
-  background-color: transparent;
-}
-
-.traffic-lights-container {
-  position: relative;
-}
-
-.js-traffic-lights {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  position: absolute;
-  top: calc(50% - 260px / 2);
-  left: calc(50% - 100px / 2);
-  height: 260px;
-  width: 100px;
-  border: solid 2px hsl(0, 0%, 39%);
-  border-radius: 10px;
-}
-.js-traffic-lights .js-traffic-lights__red, .js-traffic-lights .js-traffic-lights__yellow, .js-traffic-lights .js-traffic-lights__green {
-  width: 70px;
-  height: 70px;
-  border: solid 2px hsl(0, 0%, 39%);
-  border-radius: 50%;
-  background-color: transparent;
-  transition: background-color 0.5s;
-}
-.js-traffic-lights[color=red] .js-traffic-lights__red {
-  background-color: hsl(7, 90%, 50%);
-}
-.js-traffic-lights[color=yellow] .js-traffic-lights__yellow {
-  background-color: hsl(47, 90%, 50%);
-}
-.js-traffic-lights[color=green] .js-traffic-lights__green {
-  background-color: hsl(100, 90%, 46%);
-}
-
 input[type=month],
 input[type=datetime-local],
 input[type=text],
@@ -372,7 +239,140 @@ input[type=file] {
   font-weight: 300;
 }
 
-.active-light {
+.js-lamp[lamp-type=basic] .js-lamp__bulb.is-on + .js-lamp__light, .js-lamp[lamp-type=basic] .js-lamp__bulb {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  top: 281px;
+  left: calc(50% - 35px);
+  height: 70px;
+  width: 70px;
+  background-color: hsl(0, 0%, 13%);
+  border-radius: 50%;
+}
+
+.js-lamp[lamp-type=eco] .js-lamp__bulb.is-on + .js-lamp__light, .js-lamp[lamp-type=eco] .js-lamp__bulb {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  top: 285px;
+  left: calc(50% - 15px);
+  height: 40px;
+  width: 30px;
+  background-color: hsl(0, 0%, 13%);
+  border-radius: 0 0 10px 10px;
+}
+
+.js-lamp[lamp-type=led] .js-lamp__bulb.is-on + .js-lamp__light, .js-lamp[lamp-type=led] .js-lamp__bulb {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  top: 281px;
+  left: calc(50% - 25px);
+  height: 50px;
+  width: 50px;
+  background-color: hsl(0, 0%, 13%);
+  border-radius: 50%;
+}
+
+.js-lamp {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -500px;
+  left: 0;
+}
+.js-lamp__wire {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1px);
+  height: 250px;
+  width: 2px;
+  background-color: hsl(0, 0%, 39%);
+}
+.js-lamp__patron {
+  display: block;
+  position: absolute;
+  top: 250px;
+  left: calc(50% - 15px);
+  height: 35px;
+  width: 30px;
+  border: solid 2px;
+  background-color: hsl(0, 0%, 39%);
+  border-color: hsl(0, 0%, 39%) hsl(0, 0%, 39%) transparent hsl(0, 0%, 39%);
+  border-radius: 25px 25px 0 0;
+}
+.js-lamp[lamp-type=basic] .js-lamp__bulb {
+  border: solid 2px hsl(0, 0%, 39%);
+}
+.js-lamp[lamp-type=basic] .js-lamp__bulb.is-on + .js-lamp__light {
+  border-color: hsl(60, 100%, 50%);
+  background-color: hsl(60, 100%, 50%);
+  box-shadow: 0 0 50px hsl(60, 100%, 50%), 0 0 100px hsl(60, 100%, 50%), 0 0 150px hsl(60, 100%, 50%), 0 0 200px hsl(60, 100%, 50%), 0 0 250px hsl(60, 100%, 50%), 0 0 300px hsl(60, 100%, 50%), 0 0 350px;
+  opacity: 1;
+}
+.js-lamp[lamp-type=eco] .js-lamp__bulb {
+  border: solid 2px hsl(0, 0%, 39%);
+}
+.js-lamp[lamp-type=eco] .js-lamp__bulb.is-on + .js-lamp__light {
+  border-color: hsl(34, 78%, 91%);
+  background-color: hsl(34, 78%, 91%);
+  box-shadow: 0 0 50px hsl(34, 78%, 91%), 0 0 100px hsl(34, 78%, 91%), 0 0 150px hsl(34, 78%, 91%), 0 0 200px hsl(34, 78%, 91%), 0 0 250px hsl(34, 78%, 91%), 0 0 300px hsl(34, 78%, 91%), 0 0 350px;
+  opacity: 1;
+}
+.js-lamp[lamp-type=led] .js-lamp__bulb {
+  border: solid 2px hsl(0, 0%, 39%);
+}
+.js-lamp[lamp-type=led] .js-lamp__bulb.is-on + .js-lamp__light {
+  border-color: hsl(199, 100%, 88%);
+  background-color: hsl(199, 100%, 88%);
+  box-shadow: 0 0 50px hsl(199, 100%, 88%), 0 0 100px hsl(199, 100%, 88%), 0 0 150px hsl(199, 100%, 88%), 0 0 200px hsl(199, 100%, 88%), 0 0 250px hsl(199, 100%, 88%), 0 0 300px hsl(199, 100%, 88%), 0 0 350px;
+  opacity: 1;
+}
+.js-lamp__light {
+  opacity: 1;
+  border: none;
+  background-color: transparent;
+}
+
+.traffic-lights-container {
+  position: relative;
+}
+
+.js-traffic-lights {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: calc(50% - 260px / 2);
+  left: calc(50% - 100px / 2);
+  height: 260px;
+  width: 100px;
+  border: solid 2px hsl(0, 0%, 39%);
+  border-radius: 10px;
+}
+.js-traffic-lights .js-traffic-lights__red, .js-traffic-lights .js-traffic-lights__yellow, .js-traffic-lights .js-traffic-lights__green {
+  width: 70px;
+  height: 70px;
+  border: solid 2px hsl(0, 0%, 39%);
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.5s;
+}
+.js-traffic-lights[color=red] .js-traffic-lights__red {
+  background-color: hsl(7, 90%, 50%);
+}
+.js-traffic-lights[color=yellow] .js-traffic-lights__yellow {
+  background-color: hsl(47, 90%, 50%);
+}
+.js-traffic-lights[color=green] .js-traffic-lights__green {
+  background-color: hsl(100, 90%, 46%);
+}
+
+.js-active-light {
   display: block;
   position: relative;
   padding: 30px;

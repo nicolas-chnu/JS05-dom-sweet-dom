@@ -1,0 +1,137 @@
+@use 'sass:math';
+@use '../abstracts' as a;
+
+$wire-w: 2px;
+$wire-h: 250px;
+$wire-color: a.$gray-light;
+$patron-w: 30px;
+$patron-h: 35px;
+
+@mixin lamp-bulb($bulb-width, $bulb-height, $bulb-top-shift) {
+  $bulb-bg: a.$gray-super-dark;
+
+  display: block;
+  position: absolute;
+  z-index: 100;
+  top: $wire-h + $patron-h - $bulb-top-shift;
+  left: calc(50% - #{math.div($bulb-width, 2)});
+  height: $bulb-height;
+  width: $bulb-width;
+  background-color: $bulb-bg;
+}
+
+@mixin lamp-light($color) {
+  border-color: $color;
+  background-color: $color;
+  box-shadow:
+          0 0 50px $color,
+          0 0 100px $color,
+          0 0 150px $color,
+          0 0 200px $color,
+          0 0 250px $color,
+          0 0 300px $color,
+          0 0 350px;
+}
+
+%basic-bulb-shape {
+  $basic-w: 70px;
+  $basic-h: 70px;
+  $basic-top-shift: 4px;
+
+  @include lamp-bulb($basic-w, $basic-h, $basic-top-shift);
+  border-radius: 50%;
+}
+
+%eco-bulb-shape {
+  $eco-w: $patron-w;
+  $eco-h: 40px;
+
+  @include lamp-bulb($eco-w, $eco-h, 0);
+  border-radius: 0 0 10px 10px;
+}
+
+%led-bulb-shape {
+  $led-w: 50px;
+  $led-h: 50px;
+  $led-top-shift: 4px;
+
+  @include lamp-bulb($led-w, $led-h, $led-top-shift);
+  border-radius: 50%;
+}
+
+.js-lamp {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -500px;
+  left: 0;
+
+  &__wire {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: calc(50% - #{math.div($wire-w, 2)});
+    height: $wire-h;
+    width: $wire-w;
+    background-color: $wire-color;
+  }
+
+  &__patron {
+    display: block;
+    position: absolute;
+    top: $wire-h;
+    left: calc(50% - #{math.div($patron-w, 2)});
+    height: $patron-h;
+    width: $patron-w;
+    border: solid 2px;
+    background-color: $wire-color;
+    border-color: $wire-color $wire-color transparent $wire-color;
+    border-radius: 25px 25px 0 0;
+  }
+
+  &[lamp-type='basic'] &__bulb {
+    $basic-light-color: hsl(60, 100%, 50%);
+
+    @extend %basic-bulb-shape;
+    border: solid 2px $wire-color;
+
+    &.is-on + .js-lamp__light {
+      @extend %basic-bulb-shape;
+      @include lamp-light($basic-light-color);
+      opacity: 1;
+    }
+  }
+
+  &[lamp-type='eco'] &__bulb {
+    $eco-light-color: hsl(34, 78%, 91%);
+
+    @extend %eco-bulb-shape;
+    border: solid 2px $wire-color;
+
+    &.is-on + .js-lamp__light {
+      @extend %eco-bulb-shape;
+      @include lamp-light($eco-light-color);
+      opacity: 1;
+    }
+  }
+
+  &[lamp-type='led'] &__bulb {
+    $led-light-color: hsl(199, 100%, 88%);
+
+    @extend %led-bulb-shape;
+    border: solid 2px $wire-color;
+
+    &.is-on + .js-lamp__light {
+      @extend %led-bulb-shape;
+      @include lamp-light($led-light-color);
+      opacity: 1;
+    }
+  }
+
+  &__light {
+    opacity: 1;
+    border: none;
+    background-color: transparent;
+  }
+}
