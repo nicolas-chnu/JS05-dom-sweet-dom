@@ -26,7 +26,7 @@ a {
   color: hsl(0, 0%, 80%);
 }
 
-.home-icon, .add-icon, .search-icon, .outbox-icon, .order__direction[direction=out], .inbox-icon, .order__direction[direction=in], .edit-icon, .duration-icon, .brightness-icon, .power-switch-icon, .next-icon, .rotate-icon {
+.home-icon, .add-icon, .search-icon, .outbox-icon, .js-order__direction[direction=out], .inbox-icon, .js-order__direction[direction=in], .edit-icon, .duration-icon, .brightness-icon, .power-switch-icon, .next-icon, .rotate-icon {
   background-position: center;
   background-size: auto 70%;
   background-repeat: no-repeat;
@@ -40,6 +40,7 @@ button,
   border: none;
   opacity: 1;
   color: hsl(0, 0%, 39%);
+  cursor: pointer;
 }
 button:hover,
 .button-base:hover,
@@ -83,11 +84,11 @@ button:disabled, button[disabled],
   background-image: url("/media/edit.png");
 }
 
-.inbox-icon, .order__direction[direction=in] {
+.inbox-icon, .js-order__direction[direction=in] {
   background-image: url("/media/inbox.png");
 }
 
-.outbox-icon, .order__direction[direction=out] {
+.outbox-icon, .js-order__direction[direction=out] {
   background-image: url("/media/outbox.png");
 }
 
@@ -103,7 +104,7 @@ button:disabled, button[disabled],
   background-image: url("/media/home.png");
 }
 
-.lamp[lamp-type=basic] .lamp__bulb.is-on + .lamp__light, .lamp[lamp-type=basic] .lamp__bulb {
+.js-lamp[lamp-type=basic] .js-lamp__bulb.is-on + .js-lamp__light, .js-lamp[lamp-type=basic] .js-lamp__bulb {
   display: block;
   position: absolute;
   z-index: 100;
@@ -115,7 +116,7 @@ button:disabled, button[disabled],
   border-radius: 50%;
 }
 
-.lamp[lamp-type=eco] .lamp__bulb.is-on + .lamp__light, .lamp[lamp-type=eco] .lamp__bulb {
+.js-lamp[lamp-type=eco] .js-lamp__bulb.is-on + .js-lamp__light, .js-lamp[lamp-type=eco] .js-lamp__bulb {
   display: block;
   position: absolute;
   z-index: 100;
@@ -127,7 +128,7 @@ button:disabled, button[disabled],
   border-radius: 0 0 10px 10px;
 }
 
-.lamp[lamp-type=led] .lamp__bulb.is-on + .lamp__light, .lamp[lamp-type=led] .lamp__bulb {
+.js-lamp[lamp-type=led] .js-lamp__bulb.is-on + .js-lamp__light, .js-lamp[lamp-type=led] .js-lamp__bulb {
   display: block;
   position: absolute;
   z-index: 100;
@@ -139,7 +140,7 @@ button:disabled, button[disabled],
   border-radius: 50%;
 }
 
-.lamp {
+.js-lamp {
   display: block;
   width: 100%;
   height: 100%;
@@ -147,7 +148,7 @@ button:disabled, button[disabled],
   top: -500px;
   left: 0;
 }
-.lamp__wire {
+.js-lamp__wire {
   display: block;
   position: absolute;
   top: 0;
@@ -156,7 +157,7 @@ button:disabled, button[disabled],
   width: 2px;
   background-color: hsl(0, 0%, 39%);
 }
-.lamp__patron {
+.js-lamp__patron {
   display: block;
   position: absolute;
   top: 250px;
@@ -168,34 +169,34 @@ button:disabled, button[disabled],
   border-color: hsl(0, 0%, 39%) hsl(0, 0%, 39%) transparent hsl(0, 0%, 39%);
   border-radius: 25px 25px 0 0;
 }
-.lamp[lamp-type=basic] .lamp__bulb {
+.js-lamp[lamp-type=basic] .js-lamp__bulb {
   border: solid 2px hsl(0, 0%, 39%);
 }
-.lamp[lamp-type=basic] .lamp__bulb.is-on + .lamp__light {
+.js-lamp[lamp-type=basic] .js-lamp__bulb.is-on + .js-lamp__light {
   border-color: hsl(60, 100%, 50%);
   background-color: hsl(60, 100%, 50%);
   box-shadow: 0 0 50px hsl(60, 100%, 50%), 0 0 100px hsl(60, 100%, 50%), 0 0 150px hsl(60, 100%, 50%), 0 0 200px hsl(60, 100%, 50%), 0 0 250px hsl(60, 100%, 50%), 0 0 300px hsl(60, 100%, 50%), 0 0 350px;
   opacity: 1;
 }
-.lamp[lamp-type=eco] .lamp__bulb {
+.js-lamp[lamp-type=eco] .js-lamp__bulb {
   border: solid 2px hsl(0, 0%, 39%);
 }
-.lamp[lamp-type=eco] .lamp__bulb.is-on + .lamp__light {
+.js-lamp[lamp-type=eco] .js-lamp__bulb.is-on + .js-lamp__light {
   border-color: hsl(34, 78%, 91%);
   background-color: hsl(34, 78%, 91%);
   box-shadow: 0 0 50px hsl(34, 78%, 91%), 0 0 100px hsl(34, 78%, 91%), 0 0 150px hsl(34, 78%, 91%), 0 0 200px hsl(34, 78%, 91%), 0 0 250px hsl(34, 78%, 91%), 0 0 300px hsl(34, 78%, 91%), 0 0 350px;
   opacity: 1;
 }
-.lamp[lamp-type=led] .lamp__bulb {
+.js-lamp[lamp-type=led] .js-lamp__bulb {
   border: solid 2px hsl(0, 0%, 39%);
 }
-.lamp[lamp-type=led] .lamp__bulb.is-on + .lamp__light {
+.js-lamp[lamp-type=led] .js-lamp__bulb.is-on + .js-lamp__light {
   border-color: hsl(199, 100%, 88%);
   background-color: hsl(199, 100%, 88%);
   box-shadow: 0 0 50px hsl(199, 100%, 88%), 0 0 100px hsl(199, 100%, 88%), 0 0 150px hsl(199, 100%, 88%), 0 0 200px hsl(199, 100%, 88%), 0 0 250px hsl(199, 100%, 88%), 0 0 300px hsl(199, 100%, 88%), 0 0 350px;
   opacity: 1;
 }
-.lamp__light {
+.js-lamp__light {
   opacity: 1;
   border: none;
   background-color: transparent;
@@ -205,7 +206,7 @@ button:disabled, button[disabled],
   position: relative;
 }
 
-.traffic-lights {
+.js-traffic-lights {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -218,7 +219,7 @@ button:disabled, button[disabled],
   border: solid 2px hsl(0, 0%, 39%);
   border-radius: 10px;
 }
-.traffic-lights .traffic-lights__red, .traffic-lights .traffic-lights__yellow, .traffic-lights .traffic-lights__green {
+.js-traffic-lights .js-traffic-lights__red, .js-traffic-lights .js-traffic-lights__yellow, .js-traffic-lights .js-traffic-lights__green {
   width: 70px;
   height: 70px;
   border: solid 2px hsl(0, 0%, 39%);
@@ -226,19 +227,20 @@ button:disabled, button[disabled],
   background-color: transparent;
   transition: background-color 0.5s;
 }
-.traffic-lights[color=red] .traffic-lights__red {
+.js-traffic-lights[color=red] .js-traffic-lights__red {
   background-color: hsl(7, 90%, 50%);
 }
-.traffic-lights[color=yellow] .traffic-lights__yellow {
+.js-traffic-lights[color=yellow] .js-traffic-lights__yellow {
   background-color: hsl(47, 90%, 50%);
 }
-.traffic-lights[color=green] .traffic-lights__green {
+.js-traffic-lights[color=green] .js-traffic-lights__green {
   background-color: hsl(100, 90%, 46%);
 }
 
 input[type=month],
 input[type=datetime-local],
-input[type=text] {
+input[type=text],
+input[type=number] {
   display: block;
   outline: none;
   border: solid 2px hsl(0, 0%, 39%);
@@ -250,7 +252,8 @@ input[type=text] {
 }
 input[type=month]:focus,
 input[type=datetime-local]:focus,
-input[type=text]:focus {
+input[type=text]:focus,
+input[type=number]:focus {
   color: hsl(0, 0%, 80%);
   border-color: hsl(0, 0%, 80%);
 }
@@ -258,7 +261,9 @@ input[type=month]::-webkit-inner-spin-button, input[type=month]::-webkit-calenda
 input[type=datetime-local]::-webkit-inner-spin-button,
 input[type=datetime-local]::-webkit-calendar-picker-indicator,
 input[type=text]::-webkit-inner-spin-button,
-input[type=text]::-webkit-calendar-picker-indicator {
+input[type=text]::-webkit-calendar-picker-indicator,
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-calendar-picker-indicator {
   background-color: hsl(0, 0%, 39%);
   padding: 5px;
   border-radius: 5px;
@@ -268,12 +273,18 @@ input[type=month]::-webkit-inner-spin-button:hover, input[type=month]::-webkit-c
 input[type=datetime-local]::-webkit-inner-spin-button:hover,
 input[type=datetime-local]::-webkit-calendar-picker-indicator:hover,
 input[type=text]::-webkit-inner-spin-button:hover,
-input[type=text]::-webkit-calendar-picker-indicator:hover {
+input[type=text]::-webkit-calendar-picker-indicator:hover,
+input[type=number]::-webkit-inner-spin-button:hover,
+input[type=number]::-webkit-calendar-picker-indicator:hover {
   background-color: hsl(0, 0%, 80%);
 }
 
 input[type=text] {
   padding: 4px;
+}
+
+input[type=file] {
+  display: none;
 }
 
 .container {
@@ -339,17 +350,25 @@ input[type=text] {
 }
 
 .item-list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
   padding: 0;
   list-style-type: none;
 }
-.item-list .item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: hsl(0, 0%, 80%);
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal .modal-content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .lab-title {
@@ -379,7 +398,7 @@ input[type=text] {
   font-size: 24px;
 }
 
-.calendar, .clock-timer-container {
+.js-calendar, .clock-timer-container {
   border: solid 2px hsl(0, 0%, 39%);
   border-radius: 20px;
   padding: 30px;
@@ -393,20 +412,20 @@ input[type=text] {
   color: hsl(0, 0%, 80%);
 }
 
-.clock {
+.js-clock {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
 }
-.clock__pulse {
+.js-clock__pulse {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: green;
   transform: scale(1);
 }
-.clock__value {
+.js-clock__value {
   display: block;
   width: 55%;
   font-size: 36px;
@@ -419,31 +438,31 @@ input[type=text] {
   margin: 10px auto;
 }
 
-.timer {
+.js-timer {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-.timer__value {
+.js-timer__value {
   font-size: 30px;
 }
-.calendar {
+.js-calendar {
   display: flex;
   flex-direction: column;
   gap: 14px;
   color: hsl(0, 0%, 80%);
 }
-.calendar td {
+.js-calendar td {
   text-align: center;
   padding: 7px;
   border-radius: 50%;
 }
-.calendar td.is-shown {
+.js-calendar td.is-shown {
   cursor: pointer;
   background-color: hsl(0, 0%, 23%);
   transition: background-color 0.3s;
 }
-.calendar td.is-shown:hover {
+.js-calendar td.is-shown:hover {
   background-color: hsl(0, 0%, 39%);
 }
 
@@ -464,7 +483,7 @@ input[type=text] {
   height: 30px;
   position: relative;
 }
-.product-section__toolbar .search-product {
+.product-section__toolbar .js-search-product {
   display: flex;
   flex-direction: row;
   gap: 7px;
@@ -484,7 +503,7 @@ input[type=text] {
   text-wrap: nowrap;
   vertical-align: center;
 }
-.product-section__stats .stats-list {
+.product-section__stats .js-stats-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -492,7 +511,7 @@ input[type=text] {
   padding: 0;
   list-style-type: none;
 }
-.product-section__stats .stats-list__item {
+.product-section__stats .js-stats-list__item {
   color: hsl(0, 0%, 13%);
   padding: 5px;
   font-size: 11px;
@@ -500,13 +519,13 @@ input[type=text] {
   border-radius: 5px;
 }
 
-.product {
+.js-product {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 5px 0 5px 5px;
 }
-.product .product-info {
+.js-product .js-product-info {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -514,18 +533,18 @@ input[type=text] {
   font-size: 16px;
   padding: 10px 0;
 }
-.product .product-info__name {
+.js-product .js-product-info__name {
   width: 150px;
 }
-.product .product-info__price {
+.js-product .js-product-info__price {
   width: 100px;
 }
-.product .product-info__quantity {
+.js-product .js-product-info__quantity {
   width: 100px;
   font-size: 14px;
   color: hsl(0, 0%, 39%);
 }
-.product .product-actions {
+.js-product .js-product-actions {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -534,7 +553,7 @@ input[type=text] {
   opacity: 0;
   transition: opacity 0.3s;
 }
-.product:hover .product-actions {
+.js-product:hover .js-product-actions {
   opacity: 1;
 }
 
@@ -544,10 +563,26 @@ input[type=text] {
   gap: 7px;
 }
 
+.js-product-list,
+.js-order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.js-product-list .js-product,
+.js-product-list .js-order,
+.js-order-list .js-product,
+.js-order-list .js-order {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: hsl(0, 0%, 80%);
+}
+
 .go-home-btn,
-.search-product__btn,
-.create-product-btn,
-.product-actions button {
+.js-search-product__btn,
+.js-create-product-btn,
+.js-product-actions button {
   display: block;
   width: 30px;
   height: 30px;
@@ -557,14 +592,14 @@ input[type=text] {
   transition: opacity 0.3s;
 }
 .go-home-btn:hover,
-.search-product__btn:hover,
-.create-product-btn:hover,
-.product-actions button:hover {
+.js-search-product__btn:hover,
+.js-create-product-btn:hover,
+.js-product-actions button:hover {
   background-color: hsl(0, 0%, 80%);
   opacity: 1;
 }
 
-.search-product__btn,
+.js-search-product__btn,
 .go-home-btn {
   background-size: auto 50%;
 }
@@ -581,7 +616,7 @@ input[type=text] {
   font-weight: 400;
 }
 
-.order {
+.js-order {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -589,15 +624,130 @@ input[type=text] {
   font-size: 16px;
   padding: 5px 0 5px 5px;
 }
-.order__time {
+.js-order__time {
   width: 80px;
 }
-.order__name {
+.js-order__name {
   width: 250px;
 }
-.order__direction {
+.js-order__direction {
   width: 30px;
   height: 30px;
+}
+.js-product-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 7px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-cards {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 10px;
+  background-color: hsl(0, 0%, 27%);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.product-card:hover {
+  background-color: hsl(0, 0%, 23%);
+}
+.product-card__image {
+  display: block;
+  max-width: 100%;
+  border-radius: 10px;
+  height: auto;
+}
+.product-card__price {
+  font-size: 20px;
+  font-weight: 600;
+  color: hsl(0, 0%, 80%);
+}
+.product-card__name {
+  font-size: 16px;
+  font-weight: 300;
+  color: hsl(0, 0%, 80%);
+}
+
+#js-product-modal-content {
+  background-color: hsl(0, 0%, 23%);
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  color: hsl(0, 0%, 80%);
+}
+#js-product-modal-content h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 400;
+  padding: 10px;
+}
+#js-product-modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#js-product-modal-content form label {
+  font-size: 12px;
+  font-weight: 300;
+}
+#js-product-modal-content form .success-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #4caf50;
+  transition: background-color 0.3s;
+  color: hsl(0, 0%, 80%);
+  font-weight: 400;
+  font-size: 18px;
+}
+#js-product-modal-content form .success-btn:hover {
+  background-color: #45a049;
+}
+#js-product-modal-content .close {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.select-image-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.select-image-container .file-upload-label {
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  background-color: hsl(0, 0%, 39%);
+  font-size: 16px;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+.select-image-container .file-upload-label:hover {
+  opacity: 0.8;
+}
+.select-image-container .preview-image {
+  display: none;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 400px) {
+  #add-product-modal .modal-content {
+    width: 90%;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
